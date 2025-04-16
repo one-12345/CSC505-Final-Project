@@ -35,6 +35,10 @@ public PVector rectToHex(PVector rectCoords) {
         return hexCoords;
 }
 
+public boolean mouseIn(float x1, float y1, float x2, float y2) {
+  return (mousePosition.x > x1 && mousePosition.x<x2 && mousePosition.y > y1 && mousePosition.y<y2);
+}
+
 void keyPressed() {
   if (key == CODED) {
     InputReader.getInstance().pressKey(keyCode);
