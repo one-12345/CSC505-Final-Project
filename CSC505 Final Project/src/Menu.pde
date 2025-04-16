@@ -19,10 +19,13 @@ class Menu {
                 rect(width/2-UI_SIZE, height/2-UI_SIZE, 2*UI_SIZE, 2*UI_SIZE,UI_SIZE/5);
                 
                 //"PLAY" text
+                textAlign(CENTER);
+                fill(100);
+                stroke(100);
+                textSize(UI_SIZE*2);
+                text("TITLE", 0, -150+4*UI_SIZE/5);
                 textSize(UI_SIZE/2);
-                fill(220);
-                stroke(220);
-                text("PLAY", -UI_SIZE/2, +50+UI_SIZE/5);
+                text("PLAY", 0, +50+UI_SIZE/5);
                 
                 //Settings gear
                 translate(width/2-UI_SIZE/2,height/2-UI_SIZE/2);
