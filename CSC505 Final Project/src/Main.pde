@@ -10,12 +10,11 @@ Menu mainMenu;
 Menu settingsMenu;
 
 void setup() {
-    size(800,600);
-    map = new Map(1);
-    mousePosition = new PVector(mouseX,mouseY);
-    camera = new Camera(origin);
-    mainMenu = new Menu(0);
-    settingsMenu = new Menu(1);
+  size(800,600);
+  mousePosition = new PVector(mouseX,mouseY);
+  camera = new Camera(origin);
+  mainMenu = new Menu(0);
+  settingsMenu = new Menu(1);
 }
 
 void draw() {

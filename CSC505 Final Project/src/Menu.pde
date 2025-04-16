@@ -4,7 +4,7 @@ class Menu {
     private int menuID;
 
     public Menu(int menuID) {
-        isActive = true;
+        if (menuID == 0) {isActive = true;} else {isActive = false;}
         this.menuID = menuID;
     }
 
