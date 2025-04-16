@@ -95,37 +95,20 @@ class Menu {
                 //Faction select buttons
                 stroke(50);
                 fill(50);
-                switch (player1.getFaction) {
-                    case 0:
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                }
                 rect(width/2-6*UI_SIZE,height/2-120-2*UI_SIZE,12*UI_SIZE,4*UI_SIZE,2*UI_SIZE/5);
                 rect(width/2-6*UI_SIZE,height/2+120-2*UI_SIZE,12*UI_SIZE,4*UI_SIZE,2*UI_SIZE/5);
                 stroke(100);
                 fill(100);
                 textSize(64);
-                text("PLAYER 1", width/2-3*UI_SIZE, height/2-120-0.5*UI_SIZE);
-                text("PLAYER 2", width/2-3*UI_SIZE, height/2+120-0.5*UI_SIZE);
-                textSize(32);
-                text("TERRAN", width/2-4*UI_SIZE, height/2-120+1.5*UI_SIZE);
-                text("TERRAN", width/2-4*UI_SIZE, height/2+120+1.5*UI_SIZE);
-                text("XENO", width/2, height/2-120+1.5*UI_SIZE);
-                text("XENO", width/2, height/2+120+1.5*UI_SIZE);
-                text("MECH", width/2+4*UI_SIZE, height/2-120+1.5*UI_SIZE);
-                text("MECH", width/2+4*UI_SIZE, height/2+120+1.5*UI_SIZE);
+                text("PLAYER 1", width/2-3*UI_SIZE, height/2-120-0.8*UI_SIZE);
+                text("PLAYER 2", width/2-3*UI_SIZE, height/2+120-0.8*UI_SIZE);
 
                 stroke(25);
                 fill(25);
-                line(width/2-6*UI_SIZE-5,height/2-120+UI_SIZE/2,width/2+6*UI_SIZE+5,height/2-120+UI_SIZE/2);
-                line(width/2-6*UI_SIZE-5,height/2+120+UI_SIZE/2,width/2+6*UI_SIZE+5,height/2+120+UI_SIZE/2);
-                line(width/2-2*UI_SIZE,height/2-120+UI_SIZE/2,width/2-2*UI_SIZE,height/2-115+2*UI_SIZE);
-                line(width/2+2*UI_SIZE,height/2-120+UI_SIZE/2,width/2+2*UI_SIZE,height/2-115+2*UI_SIZE);
-                line(width/2-2*UI_SIZE,height/2+120+UI_SIZE/2,width/2-2*UI_SIZE,height/2+125+2*UI_SIZE);
-                line(width/2+2*UI_SIZE,height/2+120+UI_SIZE/2,width/2+2*UI_SIZE,height/2+125+2*UI_SIZE);
+                line(width/2-6*UI_SIZE-5,height/2-120+UI_SIZE/2,width/2+6*UI_SIZE,height/2-120+UI_SIZE/2+5);
+                line(width/2-6*UI_SIZE-5,height/2+120+UI_SIZE/2,width/2+6*UI_SIZE,height/2+120+UI_SIZE/2+5);
+
+
 
                 //Check button presses
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,0,width,UI_SIZE)) {

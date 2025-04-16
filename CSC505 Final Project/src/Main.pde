@@ -7,6 +7,8 @@ Map map;
 Camera camera;
 int menuID = 0;
 Menu menu;
+Player player1 = new Player();
+Player player2 = new Player();
 
 void setup() {
   size(800,600);
