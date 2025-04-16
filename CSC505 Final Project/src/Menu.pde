@@ -95,16 +95,45 @@ class Menu {
                 //Faction select buttons
                 stroke(50);
                 fill(50);
-                switch (player1.getFaction) {
-                    case 0:
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                }
                 rect(width/2-6*UI_SIZE,height/2-120-2*UI_SIZE,12*UI_SIZE,4*UI_SIZE,2*UI_SIZE/5);
                 rect(width/2-6*UI_SIZE,height/2+120-2*UI_SIZE,12*UI_SIZE,4*UI_SIZE,2*UI_SIZE/5);
+                rect(width/2-6*UI_SIZE,height/2-120+2*UI_SIZE-10,12*UI_SIZE,10);
+                rect(width/2-6*UI_SIZE,height/2+120+2*UI_SIZE-10,12*UI_SIZE,10);
+                
+                stroke(37.5);
+                fill(37.5);
+                switch (player1.getFaction()) {
+                    case 0:
+                        rect(width/2-6*UI_SIZE,height/2-120+UI_SIZE/2,4*UI_SIZE-5,1.5*UI_SIZE);
+                        break;
+                    case 1:
+                        rect(width/2-2*UI_SIZE,height/2-120+UI_SIZE/2,4*UI_SIZE-5,1.5*UI_SIZE);
+                        break;
+                    case 2:
+                        rect(width/2+2*UI_SIZE,height/2-120+UI_SIZE/2,4*UI_SIZE,1.5*UI_SIZE);
+                        break;
+                }
+                switch (player2.getFaction()) {
+                    case 0:
+                        rect(width/2-6*UI_SIZE,height/2+120+UI_SIZE/2,4*UI_SIZE-5,1.5*UI_SIZE);
+                        break;
+                    case 1:
+                        rect(width/2-2*UI_SIZE,height/2+120+UI_SIZE/2,4*UI_SIZE-5,1.5*UI_SIZE);
+                        break;
+                    case 2:
+                        rect(width/2+2*UI_SIZE,height/2+120+UI_SIZE/2,4*UI_SIZE,1.5*UI_SIZE);
+                        break;
+                }
+                
+                stroke(25);
+                fill(25);
+                line(width/2-6*UI_SIZE-5,height/2-120+UI_SIZE/2,width/2+6*UI_SIZE+5,height/2-120+UI_SIZE/2);
+                line(width/2-6*UI_SIZE-5,height/2+120+UI_SIZE/2,width/2+6*UI_SIZE+5,height/2+120+UI_SIZE/2);
+                line(width/2-2*UI_SIZE,height/2-120+UI_SIZE/2,width/2-2*UI_SIZE,height/2-115+2*UI_SIZE);
+                line(width/2+2*UI_SIZE,height/2-120+UI_SIZE/2,width/2+2*UI_SIZE,height/2-115+2*UI_SIZE);
+                line(width/2-2*UI_SIZE,height/2+120+UI_SIZE/2,width/2-2*UI_SIZE,height/2+125+2*UI_SIZE);
+                line(width/2+2*UI_SIZE,height/2+120+UI_SIZE/2,width/2+2*UI_SIZE,height/2+125+2*UI_SIZE);
+                
                 stroke(100);
                 fill(100);
                 textSize(64);
@@ -118,18 +147,27 @@ class Menu {
                 text("MECH", width/2+4*UI_SIZE, height/2-120+1.5*UI_SIZE);
                 text("MECH", width/2+4*UI_SIZE, height/2+120+1.5*UI_SIZE);
 
-                stroke(25);
-                fill(25);
-                line(width/2-6*UI_SIZE-5,height/2-120+UI_SIZE/2,width/2+6*UI_SIZE+5,height/2-120+UI_SIZE/2);
-                line(width/2-6*UI_SIZE-5,height/2+120+UI_SIZE/2,width/2+6*UI_SIZE+5,height/2+120+UI_SIZE/2);
-                line(width/2-2*UI_SIZE,height/2-120+UI_SIZE/2,width/2-2*UI_SIZE,height/2-115+2*UI_SIZE);
-                line(width/2+2*UI_SIZE,height/2-120+UI_SIZE/2,width/2+2*UI_SIZE,height/2-115+2*UI_SIZE);
-                line(width/2-2*UI_SIZE,height/2+120+UI_SIZE/2,width/2-2*UI_SIZE,height/2+125+2*UI_SIZE);
-                line(width/2+2*UI_SIZE,height/2+120+UI_SIZE/2,width/2+2*UI_SIZE,height/2+125+2*UI_SIZE);
-
                 //Check button presses
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,0,width,UI_SIZE)) {
                     menuID = 0;
+                }
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-6*UI_SIZE,height/2-120+UI_SIZE/2,width/2-2*UI_SIZE-5,height/2-120+2*UI_SIZE)) {
+                    player1.setFaction(0);
+                }
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-2*UI_SIZE,height/2-120+UI_SIZE/2,width/2+2*UI_SIZE-5,height/2-120+2*UI_SIZE)) {
+                    player1.setFaction(1);
+                }
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+2*UI_SIZE,height/2-120+UI_SIZE/2,width/2+6*UI_SIZE,height/2-120+2*UI_SIZE)) {
+                    player1.setFaction(2);
+                }
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-6*UI_SIZE,height/2+120+UI_SIZE/2,width/2-2*UI_SIZE-5,height/2+120+2*UI_SIZE)) {
+                    player2.setFaction(0);
+                }
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-2*UI_SIZE,height/2+120+UI_SIZE/2,width/2+2*UI_SIZE-5,height/2+120+2*UI_SIZE)) {
+                    player2.setFaction(1);
+                }
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+2*UI_SIZE,height/2+120+UI_SIZE/2,width/2+6*UI_SIZE,height/2+120+2*UI_SIZE)) {
+                    player2.setFaction(2);
                 }
                 break;
         }
