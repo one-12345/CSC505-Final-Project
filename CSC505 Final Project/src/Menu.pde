@@ -9,6 +9,7 @@ class Menu {
     public void updateMenu() {
         switch (menuID) {
             case 0:
+                textAlign(CENTER);
                 background(25,25,25);
                 strokeWeight(3);
                
@@ -17,20 +18,26 @@ class Menu {
                 fill(50);
                 translate(width/2, height/2);
                 rect(-UI_SIZE, 50-UI_SIZE/2, 2*UI_SIZE, UI_SIZE,UI_SIZE/5);
-                rect(-1.5*UI_SIZE, 120-UI_SIZE/2, 3*UI_SIZE, UI_SIZE,UI_SIZE/5);
                 rect(-UI_SIZE, 190-UI_SIZE/2, 2*UI_SIZE, UI_SIZE,UI_SIZE/5);
                 rect(width/2-UI_SIZE, height/2-UI_SIZE, UI_SIZE, 2*UI_SIZE,UI_SIZE/5);
+
+                // tutorial button (WIP)
+                stroke(37.5);
+                fill(37.5);
+                rect(-1.5*UI_SIZE, 120-UI_SIZE/2, 3*UI_SIZE, UI_SIZE,UI_SIZE/5);
+                fill(50);
+                stroke(50);
+                text("TUTORIAL", 0, 120+UI_SIZE/5);
                 
                 //"PLAY" text
-                textAlign(CENTER);
                 fill(100);
                 stroke(100);
                 textSize(UI_SIZE*2);
                 text("UNTITLED", 0, -150+4*UI_SIZE/5);
                 textSize(UI_SIZE/2);
                 text("PLAY", 0, 50+UI_SIZE/5);
-                text("TUTORIAL", 0, 120+UI_SIZE/5);
                 text("QUIT", 0, 190+UI_SIZE/5);
+
                 
                 //Settings gear
                 translate(width/2-UI_SIZE/2,height/2-UI_SIZE/2);
