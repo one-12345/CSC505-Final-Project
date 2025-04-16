@@ -11,7 +11,7 @@ class Tile {
     }
 
     public void drawTile() {
-        CVector brush = center.copy();
+        PVector brush = center.copy();
         //LOW PRIORITY
     }
 
