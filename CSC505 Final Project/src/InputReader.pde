@@ -2,10 +2,12 @@ static class InputReader {
     private static final InputReader INSTANCE= new InputReader();
     private HashMap<Integer, Boolean> intKeyDown;
     private HashMap<Character, Boolean> charKeyDown;
+    private boolean mouseDown;
 
     private InputReader() {
         intKeyDown = new HashMap<Integer, Boolean>();
         charKeyDown = new HashMap<Character, Boolean>();
+        mouseDown = false;
     }
 
     public static InputReader getInstance() {
@@ -20,12 +22,20 @@ static class InputReader {
         charKeyDown.put(k, true);
     }
 
+    public void pressMouse() {
+        mouseDown = true;
+    }
+
     public void releaseKey(int k) {
         intKeyDown.put(k, false);
     }
     
     public void releaseKey(char k) {
         charKeyDown.put(k, false);
+    }
+
+    public void releaseMouse() {
+        mouseDown = false;
     }
 
     public boolean getKeyDown(int k) {
@@ -42,5 +52,9 @@ static class InputReader {
         }
         return charKeyDown.get(k);
 
+    }
+
+    public boolean getMouseDown() {
+        return mouseDown;
     }
 }

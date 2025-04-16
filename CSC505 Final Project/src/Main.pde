@@ -6,15 +6,13 @@ PVector origin = new PVector(0,0);
 Map map;
 Camera camera;
 int menuID = 0;
-Menu mainMenu;
-Menu settingsMenu;
+Menu menu;
 
 void setup() {
   size(800,600);
   mousePosition = new PVector(mouseX,mouseY);
   camera = new Camera(origin);
-  mainMenu = new Menu(0);
-  settingsMenu = new Menu(1);
+  menu = new Menu(0);
 }
 
 void draw() {
@@ -22,17 +20,7 @@ void draw() {
   mousePosition.x = mouseX;
   mousePosition.y = mouseY;
 
-  textSize(128);
-  fill(0);
-  text("word", 40, 120); 
-
-  switch (menuID) {
-    case 0:
-      mainMenu.updateMenu();
-      break;
-    case 1:
-      break;
-  }
+  menu.updateMenu();
 }
 
 public PVector hexToRect(PVector hexCoords) {
@@ -61,4 +49,12 @@ void keyReleased() {
   } else {
     InputReader.getInstance().releaseKey(key);
   }
+}
+
+void mousePressed() {
+  InputReader.getInstance().pressMouse();
+}
+
+void mouseReleased() {
+  InputReader.getInstance().releaseMouse();
 }

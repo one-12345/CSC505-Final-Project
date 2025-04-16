@@ -10,6 +10,7 @@ class Menu {
         switch (menuID) {
             case 0:
                 background(25,25,25);
+                strokeWeight(3);
                
                 //buttons
                 stroke(50);
@@ -36,6 +37,33 @@ class Menu {
                 stroke(50);
                 fill(50);
                 circle(0, 0, UI_SIZE/4);
+
+                //Check button presses
+                if (InputReader.getInstance().getMouseDown() && mousePosition.x>width-UI_SIZE && mousePosition.y>height-UI_SIZE) {
+                    menuID = 1;
+                }
+                break;
+            case 1: 
+                background(25,25,25);
+                strokeWeight(6);
+
+                //Exit button
+                stroke(50);
+                fill(50);
+                rect(width-UI_SIZE,0,UI_SIZE,UI_SIZE,UI_SIZE/5);
+                stroke(100);
+                fill(100);
+                line(width-UI_SIZE+2, 0, width-2, UI_SIZE-2);
+                line(width, 0, width-UI_SIZE+2, UI_SIZE-2);
+    
+
+                //Checkbutton presses
+                if (InputReader.getInstance().getMouseDown() && mousePosition.x>width-UI_SIZE && mousePosition.y<UI_SIZE) {
+                    menuID = 0;
+                }
+                break;
+            case 2:
+                break;
         }
     }
 } 
