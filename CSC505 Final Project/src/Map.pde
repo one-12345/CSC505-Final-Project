@@ -15,7 +15,7 @@ class Map {
                 tileMap.put(new Tile(new PVector(x,y)), null);
             }
         }
-        for (int y = size; y < size*2-1; i++) {
+        for (int y = size; y < size*2-1; y++) {
             for (int x = -2*size+1+y; x < 2*size-y; y++) {
                 tileMap.put(new Tile(new PVector(x,y)), null);
             }
@@ -23,6 +23,11 @@ class Map {
     }
 
     public void connectTiles(Tile t1, Tile t2) {
-        //DO SOON
+        List<Tile> list1 = tileMap.get(t1);
+        List<Tile> list2 = tileMap.get(t2);
+        list1.add(t2);
+        list2.add(t1);
+        tileMap.put(t1,list1);
+        tileMap.put(t2,list2);
     }
 }

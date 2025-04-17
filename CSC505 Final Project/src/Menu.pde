@@ -90,6 +90,7 @@ class Menu {
                     previousMenu = menuID;
                     menuID = 3;
                     timeInMenu = 0;
+                    map.generateMap();
                 }
                 if (InputReader.getInstance().getKeyDown(0) && timeInMenu > 200) {
                     previousMenu = menuID;
