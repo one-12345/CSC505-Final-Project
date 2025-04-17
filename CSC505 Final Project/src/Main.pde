@@ -18,6 +18,7 @@ void setup() {
 }
 
 void draw() {
+  Timer.getInstance().updateTime();
   
   mousePosition.x = mouseX;
   mousePosition.y = mouseY;
@@ -42,6 +43,9 @@ public boolean mouseIn(float x1, float y1, float x2, float y2) {
 }
 
 void keyPressed() {
+  if (key == ESC) {
+    key = 0;
+  }
   if (key == CODED) {
     InputReader.getInstance().pressKey(keyCode);
   } else {

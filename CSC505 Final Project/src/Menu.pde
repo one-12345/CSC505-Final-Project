@@ -1,14 +1,18 @@
 class Menu {
 
     private int menuID;
+    private int timeInMenu = 0;
+    private int previousMenu = 0;
 
     public Menu(int menuID) {
         this.menuID = menuID;
     }
 
     public void updateMenu() {
+        timeInMenu+=Timer.getInstance().getDelta();
         switch (menuID) {
             case 0:
+                //MAIN MENU
                 textAlign(CENTER);
                 background(25,25,25);
                 strokeWeight(3);
@@ -51,16 +55,23 @@ class Menu {
 
                 //Check button presses
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,height-UI_SIZE,width,height)) {
+                    previousMenu = menuID;
                     menuID = 1;
+                    timeInMenu = 0;
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-UI_SIZE,height/2+50-UI_SIZE/2,width/2+UI_SIZE,height/2+50+UI_SIZE/2)) {
+                    previousMenu = menuID;
                     menuID = 2;
+                    player1.setFaction(0);
+                    player2.setFaction(0);
+                    timeInMenu = 0;
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-UI_SIZE, height/2+190-UI_SIZE/2, width/2+UI_SIZE, height/2+190+UI_SIZE/2)) {
                     exit();
                 }
                 break;
             case 1: 
+                //SETTINGS MENU
                 background(25,25,25);
                 strokeWeight(6);
 
@@ -76,10 +87,18 @@ class Menu {
 
                 //Check button presses
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,0,width,UI_SIZE)) {
-                    menuID = 0;
+                    menuID = previousMenu;
+                    previousMenu = 1;
+                    timeInMenu = 0;
+                }
+                if (InputReader.getInstance().getKeyDown(0) && timeInMenu > 200) {
+                    menuID = previousMenu;
+                    previousMenu = 1;
+                    timeInMenu = 0;
                 }
                 break;
             case 2:
+                //GAME SETUP MENU
                 background(25,25,25);
                 strokeWeight(6);
 
@@ -149,6 +168,7 @@ class Menu {
 
                 //Check button presses
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,0,width,UI_SIZE)) {
+                    previousMenu = menuID;
                     menuID = 0;
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-6*UI_SIZE,height/2-120+UI_SIZE/2,width/2-2*UI_SIZE-5,height/2-120+2*UI_SIZE)) {
@@ -169,6 +189,101 @@ class Menu {
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+2*UI_SIZE,height/2+120+UI_SIZE/2,width/2+6*UI_SIZE,height/2+120+2*UI_SIZE)) {
                     player2.setFaction(2);
                 }
+                if (InputReader.getInstance().getKeyDown('\n') && timeInMenu > 200) {
+                    previousMenu = menuID;
+                    menuID = 3;
+                    timeInMenu = 0;
+                }
+                if (InputReader.getInstance().getKeyDown(0) && timeInMenu > 200) {
+                    previousMenu = menuID;
+                    menuID = 0;
+                    timeInMenu = 0;
+                }
+                break;
+            case 3:
+                //PLAY MENU
+                background(25,25,25);
+                strokeWeight(6);
+
+                //Pause button
+                stroke(50);
+                fill(50);
+                rect(width-UI_SIZE,0,UI_SIZE,UI_SIZE,UI_SIZE/5);
+                stroke(100);
+                fill(100);
+                line(width-UI_SIZE+15, 10, width-UI_SIZE+15, UI_SIZE-10);
+                line(width-15, 10, width-15, UI_SIZE-10);
+
+                //Check button presses
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,0,width,UI_SIZE)) {
+                    previousMenu = menuID;
+                    menuID = 4;
+                    timeInMenu = 0;
+                }
+                if (InputReader.getInstance().getKeyDown(' ') && timeInMenu > 200) {
+                    previousMenu = menuID;
+                    menuID = 4;
+                    timeInMenu = 0;
+                }
+                break;
+            case 4:
+                //PAUSE MENU
+                
+                stroke(37.5);
+                fill(37.5);
+                rect(width/2-2*UI_SIZE,height/2-3*UI_SIZE,4*UI_SIZE,6*UI_SIZE,2*UI_SIZE/5);
+
+                stroke(50);
+                fill(50);
+                rect(width/2-1.5*UI_SIZE,height/2-2.5*UI_SIZE,3*UI_SIZE,UI_SIZE,UI_SIZE/5);
+                rect(width/2-1.5*UI_SIZE,height/2-0.5*UI_SIZE,3*UI_SIZE,UI_SIZE,UI_SIZE/5);
+                rect(width/2-1.5*UI_SIZE,height/2+1.5*UI_SIZE,3*UI_SIZE,UI_SIZE,UI_SIZE/5);
+
+                textSize(25);
+                stroke(100);
+                fill(100);
+                text("MAIN MENU", width/2, height/2+-1.8*UI_SIZE);
+                text("SETTINGS", width/2, height/2+0.2*UI_SIZE);
+                text("RESUME", width/2, height/2+2.2*UI_SIZE);
+
+                //Unpause button
+
+                stroke(50);
+                fill(50);
+                rect(width-UI_SIZE,0,UI_SIZE,UI_SIZE,UI_SIZE/5);
+                stroke(100);
+                fill(100);
+                triangle(width-UI_SIZE+15,12,width-UI_SIZE+15,UI_SIZE-12,width-15,UI_SIZE/2);
+
+
+                //Check button presses
+                
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-1.5*UI_SIZE,height/2-2.2*UI_SIZE,width/2+1.5*UI_SIZE,height/2-1.5*UI_SIZE)) {
+                    previousMenu = menuID;
+                    menuID = 0;
+                    timeInMenu = 0;
+                }
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-1.5*UI_SIZE,height/2-0.2*UI_SIZE,width/2+1.5*UI_SIZE,height/2+0.5*UI_SIZE)) {
+                    previousMenu = menuID;
+                    menuID = 1;
+                    timeInMenu = 0;
+                }
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-1.5*UI_SIZE,height/2+1.8*UI_SIZE,width/2+1.5*UI_SIZE,height/2+2.5*UI_SIZE)) {
+                    previousMenu = menuID;
+                    menuID = 3;
+                    timeInMenu = 0;
+                }
+                if (InputReader.getInstance().getKeyDown(' ') && timeInMenu > 200) {
+                    previousMenu = menuID;
+                    menuID = 3;
+                    timeInMenu = 0;
+                }
+                if (InputReader.getInstance().getKeyDown(0) && timeInMenu > 200) {
+                    previousMenu = menuID;
+                    menuID = 0;
+                    timeInMenu = 0;
+                }
+
                 break;
         }
     }
