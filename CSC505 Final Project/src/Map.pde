@@ -8,6 +8,4 @@ class Map {
         size = n;
         adjacencyList = new HashMap<>();
     }
-    }
-
 }
