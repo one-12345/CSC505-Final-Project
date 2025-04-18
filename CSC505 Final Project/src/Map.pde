@@ -16,25 +16,30 @@ class Map {
                 generationVector.x = x;
                 generationVector.y = y;
                 generationTile.setCenter(generationVector);
-                tileMap.put(generationTile, null);
-                this.connectAdjacent(generationTile);
+                tileMap.put(generationTile.copy(), null);
+                this.connectAdjacent(generationTile.copy());
             }
         }
         for (int y = size; y < size*2-1; y++) {
             for (int x = -2*size+1+y; x < 2*size-y; y++) {
-                tileMap.put(new Tile(new PVector(x,y)), null);
+                generationVector.x = x;
+                generationVector.y = y;
+                generationTile.setCenter(generationVector);
+                tileMap.put(generationTile.copy(), null);
+                this.connectAdjacent(generationTile.copy());
             }
         }
     }
 
     public void mapSquareRender() {
+        translate(width/2,height/2+100);
         strokeWeight(6);
         stroke(25);
         fill(100);
         PVector v;
         for (Tile t : tileMap.keySet()) {
             v = t.getCenter();
-            rect(v.x-0.5,v.y-0.5,1,1);
+            rect(20*v.x-10,-20*v.y-10,20,20);
         }
     }
 

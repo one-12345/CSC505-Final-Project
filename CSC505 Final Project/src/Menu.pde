@@ -112,6 +112,9 @@ class Menu {
                 line(width-UI_SIZE+15, 10, width-UI_SIZE+15, UI_SIZE-10);
                 line(width-15, 10, width-15, UI_SIZE-10);
 
+                //SQUARE RENDER TEST
+                map.mapSquareRender();
+
                 //Check button presses
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,0,width,UI_SIZE)) {
                     previousMenu = menuID;

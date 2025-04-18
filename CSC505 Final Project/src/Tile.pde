@@ -19,4 +19,8 @@ class Tile {
         //LOW PRIORITY
     }
 
+    public Tile copy() {
+        return new Tile(this.center);
+    }
+
 }
