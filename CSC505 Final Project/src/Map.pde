@@ -20,8 +20,8 @@ class Map {
                 this.connectAdjacent(generationTile.copy());
             }
         }
-        for (int y = size; y < size*2-1; y++) {
-            for (int x = -2*size+1+y; x < 2*size-y; y++) {
+        for (int y = size; y < size*2; y++) {
+            for (int x = -2*size+1+y; x < 2*size-y; x++) {
                 generationVector.x = x;
                 generationVector.y = y;
                 generationTile.setCenter(generationVector);
