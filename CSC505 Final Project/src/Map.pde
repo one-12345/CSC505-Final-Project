@@ -16,8 +16,8 @@ class Map {
                 generationVector.x = x;
                 generationVector.y = y;
                 generationTile.setCenter(generationVector);
-                tileMap.put(generationTile.copy(), null);
-                this.connectAdjacent(generationTile.copy());
+                tileMap.put(generationTile, null);
+                this.connectAdjacent(generationTile);
             }
         }
         for (int y = size; y < size*2-1; y++) {
@@ -48,7 +48,7 @@ class Map {
     }
 
     public void connectAdjacent(Tile t1) {
-        private Tile temp = new Tile(t1.getCenter());
+        Tile temp = new Tile(t1.getCenter());
         temp.setCenter(t1.getCenter().copy().add(-1,0));
         this.connectTiles(tileMap.containsKey(temp),t1,temp);
         temp.setCenter(t1.getCenter().copy().add(1,0));

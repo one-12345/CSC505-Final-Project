@@ -10,7 +10,7 @@ class Tile {
         return center;
     }
 
-    public PVector setCenter(PVector newCenter) {
+    public void setCenter(PVector newCenter) {
         center = newCenter;
     }
 
