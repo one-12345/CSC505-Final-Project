@@ -10,6 +10,10 @@ class Tile {
         return center;
     }
 
+    public PVector setCenter(PVector newCenter) {
+        center = newCenter;
+    }
+
     public void drawTile() {
         PVector brush = center.copy();
         //LOW PRIORITY
