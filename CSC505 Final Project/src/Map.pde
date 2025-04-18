@@ -27,6 +27,17 @@ class Map {
         }
     }
 
+    public void mapSquareRender() {
+        strokeWeight(6);
+        stroke(25);
+        fill(100);
+        PVector v;
+        for (Tile t : tileMap.keySet()) {
+            v = t.getCenter();
+            rect(v.x-0.5,v.y-0.5,1,1);
+        }
+    }
+
     public void connectTiles(Tile t1, Tile t2) {
         List<Tile> list1 = tileMap.get(t1);
         List<Tile> list2 = tileMap.get(t2);
