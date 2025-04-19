@@ -13,7 +13,7 @@ Player player2 = new Player();
 void setup() {
   size(800,600);
   mousePosition = new PVector(mouseX,mouseY);
-  camera = new Camera(origin);
+  camera = new Camera();
   menu = new Menu(0);
   map = new Map(10);
 }

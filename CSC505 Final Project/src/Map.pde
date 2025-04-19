@@ -58,6 +58,16 @@ class Map {
         }
     }
 
+    public void drawMap() {
+        PVector v;
+        for (Tile t : tileMap.keySet()) {
+            strokeWeight(6);
+            stroke(25);
+            fill(100);
+            v = t.getCenter();
+        }
+    }
+
     public void connectTiles(Tile t1, Tile t2) {
         ArrayList<Tile> list1 = new ArrayList<Tile>();
         ArrayList<Tile> list2 = new ArrayList<Tile>();
