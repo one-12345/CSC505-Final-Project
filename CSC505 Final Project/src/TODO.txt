@@ -1,0 +1,10 @@
+Bryan
+- Add sound slider to settings menu
+- Add hotkey editor for the following:
+    1. Camera Up
+    2. Camera Down
+    3. Camera Left
+    4. Camera Right
+    5. Zoom In
+    6. Zoom Out
+    7. Pause
