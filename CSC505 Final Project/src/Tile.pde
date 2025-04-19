@@ -23,4 +23,12 @@ class Tile {
         return new Tile(this.center);
     }
 
+    public boolean equals(Tile t) {
+        return t.getCenter().equals(center);
+    }
+
+    public String toString() {
+        return this.center.toString();
+    }
+
 }
