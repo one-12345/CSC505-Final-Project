@@ -38,7 +38,6 @@ class Map {
 
     public void mapSquareRender() {
         translate(width/2,height/2+200);
-        fill(100);
         PVector v;
         for (Tile t : tileMap.keySet()) {
             strokeWeight(6);
@@ -61,10 +60,11 @@ class Map {
     public void drawMap() {
         PVector v;
         for (Tile t : tileMap.keySet()) {
-            strokeWeight(6);
+            strokeWeight(camera.getZoom()/20);
             stroke(25);
             fill(100);
             v = t.getCenter();
+            polygon(camera.getZoom()*v.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y),camera.getZoom()/2,6);
         }
     }
 

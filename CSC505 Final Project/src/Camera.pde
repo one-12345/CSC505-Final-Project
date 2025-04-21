@@ -5,8 +5,8 @@ class Camera {
     final PVector SHIFT = new PVector(width/2,height/2);
 
     public Camera() {
-        this.cameraCenter = new PVector(0,0);
-        this.zoom = 15;
+        this.cameraCenter = SHIFT;
+        this.zoom = 50;
     }
 
     public PVector getCameraPosition() {
@@ -19,31 +19,31 @@ class Camera {
 
     public void cameraMovement() {
         long delta = Timer.getInstance().getDelta();
-        final float CAMERA_SPEED = 0.5;
+        float CAMERA_SPEED = 0.5*zoom;
         final float ZOOM_SPEED = 1.003;
         final float MAX_ZOOM = 100;
-        final float MIN_ZOOM = 20;
+        final float MIN_ZOOM = 30;
         InputReader inputReader = InputReader.getInstance();
         if (inputReader.getKeyDown(UP) || inputReader.getKeyDown('w')) {
-            cameraCenter.add(0,-CAMERA_SPEED*delta/zoom);
-        }
-        if (inputReader.getKeyDown(DOWN) || inputReader.getKeyDown('s')) {
             cameraCenter.add(0,CAMERA_SPEED*delta/zoom);
         }
-        if (inputReader.getKeyDown(LEFT) || inputReader.getKeyDown('a')) {
-            cameraCenter.add(-CAMERA_SPEED*delta/zoom,0);
+        if (inputReader.getKeyDown(DOWN) || inputReader.getKeyDown('s')) {
+            cameraCenter.add(0,-CAMERA_SPEED*delta/zoom);
         }
-        if (inputReader.getKeyDown(RIGHT) || inputReader.getKeyDown('d')) {
+        if (inputReader.getKeyDown(LEFT) || inputReader.getKeyDown('a')) {
             cameraCenter.add(CAMERA_SPEED*delta/zoom,0);
         }
-        if (inputReader.getKeyDown('q')) {
+        if (inputReader.getKeyDown(RIGHT) || inputReader.getKeyDown('d')) {
+            cameraCenter.add(-CAMERA_SPEED*delta/zoom,0);
+        }
+        if (inputReader.getKeyDown('e')) {
             if (zoom < MAX_ZOOM/ZOOM_SPEED) {
                 zoom*=Math.pow(ZOOM_SPEED,delta);
             } else {
                 zoom = MAX_ZOOM;
             }
         }
-        if (inputReader.getKeyDown('e')) {
+        if (inputReader.getKeyDown('q')) {
             if (zoom > MIN_ZOOM*ZOOM_SPEED) {
                 zoom/=Math.pow(ZOOM_SPEED,delta);
             } else {
