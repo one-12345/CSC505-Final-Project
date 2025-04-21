@@ -248,6 +248,7 @@ class Menu {
         line(width-10, 10, width-UI_SIZE+10, UI_SIZE-10);
     
         //Faction select buttons
+        translate(0,-50);
         stroke(50);
         fill(50);
         rect(width/2-6*UI_SIZE,height/2-120-2*UI_SIZE,12*UI_SIZE,4*UI_SIZE,2*UI_SIZE/5);
@@ -301,5 +302,9 @@ class Menu {
         text("XENO", width/2, height/2+120+1.5*UI_SIZE);
         text("MECH", width/2+4*UI_SIZE, height/2-120+1.5*UI_SIZE);
         text("MECH", width/2+4*UI_SIZE, height/2+120+1.5*UI_SIZE);
+
+        if (timeInMenu/100%10>2) {
+            text("PRESS 'ENTER' TO START", width/2, height/2+220+1.5*UI_SIZE);
+        }
     }
 } 
