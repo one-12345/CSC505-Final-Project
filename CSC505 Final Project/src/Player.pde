@@ -3,8 +3,8 @@ class Player {
     private int faction;
     private color playerColor;
 
-    public Player() {
-
+    public Player(color c) {
+        playerColor = c;
     }
 
     public void setFaction(int n) {
@@ -21,6 +21,10 @@ class Player {
 
     public color getPlayerColor() {
         return playerColor;
+    }
+
+    public void drawHand() {
+
     }
 
 }

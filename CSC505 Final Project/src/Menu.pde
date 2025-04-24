@@ -3,6 +3,7 @@ class Menu {
     private int menuID;
     private int timeInMenu = 0;
     private int previousMenu = 0;
+    private boolean b;
 
     public Menu(int menuID) {
         this.menuID = menuID;
@@ -25,6 +26,8 @@ class Menu {
                     menuID = 2;
                     player1.setFaction(0);
                     player2.setFaction(0);
+                    player1.setPlayerColor(color(0,40,10));
+                    player2.setPlayerColor(color(0,10,40));
                     timeInMenu = 0;
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-UI_SIZE, height/2+190-UI_SIZE/2, width/2+UI_SIZE, height/2+190+UI_SIZE/2)) {
@@ -68,29 +71,37 @@ class Menu {
                     previousMenu = menuID;
                     menuID = 0;
                 }
-                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-6*UI_SIZE,height/2-120+UI_SIZE/2,width/2-2*UI_SIZE-5,height/2-120+2*UI_SIZE)) {
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-6*UI_SIZE,height/2-170+UI_SIZE/2,width/2-2*UI_SIZE-5,height/2-170+2*UI_SIZE)) {
                     player1.setFaction(0);
+                    player1.setPlayerColor(color(0,40,10));
                 }
-                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-2*UI_SIZE,height/2-120+UI_SIZE/2,width/2+2*UI_SIZE-5,height/2-120+2*UI_SIZE)) {
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-2*UI_SIZE,height/2-170+UI_SIZE/2,width/2+2*UI_SIZE-5,height/2-170+2*UI_SIZE)) {
                     player1.setFaction(1);
+                    player1.setPlayerColor(color(40,0,30));
                 }
-                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+2*UI_SIZE,height/2-120+UI_SIZE/2,width/2+6*UI_SIZE,height/2-120+2*UI_SIZE)) {
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+2*UI_SIZE,height/2-170+UI_SIZE/2,width/2+6*UI_SIZE,height/2-170+2*UI_SIZE)) {
                     player1.setFaction(2);
+                    player1.setPlayerColor(color(40,40,0));
                 }
-                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-6*UI_SIZE,height/2+120+UI_SIZE/2,width/2-2*UI_SIZE-5,height/2+120+2*UI_SIZE)) {
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-6*UI_SIZE,height/2+70+UI_SIZE/2,width/2-2*UI_SIZE-5,height/2+70+2*UI_SIZE)) {
                     player2.setFaction(0);
+                    player2.setPlayerColor(color(0,10,40));
                 }
-                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-2*UI_SIZE,height/2+120+UI_SIZE/2,width/2+2*UI_SIZE-5,height/2+120+2*UI_SIZE)) {
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-2*UI_SIZE,height/2+70+UI_SIZE/2,width/2+2*UI_SIZE-5,height/2+70+2*UI_SIZE)) {
                     player2.setFaction(1);
+                    player2.setPlayerColor(color(10,10,10));
                 }
-                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+2*UI_SIZE,height/2+120+UI_SIZE/2,width/2+6*UI_SIZE,height/2+120+2*UI_SIZE)) {
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+2*UI_SIZE,height/2+70+UI_SIZE/2,width/2+6*UI_SIZE,height/2+70+2*UI_SIZE)) {
                     player2.setFaction(2);
+                    player2.setPlayerColor(color(150,150,150));
                 }
                 if (InputReader.getInstance().getKeyDown('\n') && timeInMenu > 200) {
                     previousMenu = menuID;
                     menuID = 3;
                     timeInMenu = 0;
                     map.generateMap();
+                    game.setActivity();
+                    turn = 1;
                 }
                 if (InputReader.getInstance().getKeyDown(0) && timeInMenu > 200) {
                     previousMenu = menuID;
@@ -102,15 +113,25 @@ class Menu {
                 //PLAY MENU
                 background(25,25,25);
                 strokeWeight(6);
+                textSize(32);
 
                 //Pause button
-                stroke(50);
-                fill(50);
+                stroke(50,255);
+                fill(50,255);
                 rect(width-UI_SIZE,0,UI_SIZE,UI_SIZE,UI_SIZE/5);
-                stroke(100);
-                fill(100);
+                stroke(100,255);
+                fill(100,255);
                 line(width-UI_SIZE+15, 10, width-UI_SIZE+15, UI_SIZE-10);
                 line(width-15, 10, width-15, UI_SIZE-10);
+
+                //Next Turn button
+                stroke(50,255);
+                fill(50,255);
+                rect(width-UI_SIZE,height-UI_SIZE,UI_SIZE,UI_SIZE,UI_SIZE/5);
+                stroke(100,255);
+                fill(100,255);
+                line(width-0.8*UI_SIZE, height-0.5*UI_SIZE, width-0.2*UI_SIZE, height-0.5*UI_SIZE);
+                triangle(width-0.5*UI_SIZE,height-0.25*UI_SIZE,width-0.5*UI_SIZE,height-0.75*UI_SIZE,width-0.2*UI_SIZE,height-0.5*UI_SIZE);
 
                 //MAP SQUARE RENDER (for testing)
                 //map.mapSquareRender();
@@ -118,6 +139,7 @@ class Menu {
                 //MAP RENDER
                 camera.cameraMovement();
                 map.drawMap();
+                game.updateGame();
 
                 //Check button presses
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,0,width,UI_SIZE)) {
@@ -166,6 +188,7 @@ class Menu {
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-1.5*UI_SIZE,height/2-2.2*UI_SIZE,width/2+1.5*UI_SIZE,height/2-1.5*UI_SIZE)) {
                     previousMenu = menuID;
                     menuID = 0;
+                    game.setActivity();
                     timeInMenu = 0;
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-1.5*UI_SIZE,height/2-0.2*UI_SIZE,width/2+1.5*UI_SIZE,height/2+0.5*UI_SIZE)) {
@@ -216,9 +239,9 @@ class Menu {
         //"PLAY" text
         fill(100);
         stroke(100);
-        textSize(UI_SIZE*2);
+        textSize(100);
         text("UNTITLED", 0, -150+4*UI_SIZE/5);
-        textSize(UI_SIZE/2);
+        textSize(25);
         text("PLAY", 0, 50+UI_SIZE/5);
         text("QUIT", 0, 190+UI_SIZE/5);
 
@@ -256,8 +279,8 @@ class Menu {
         rect(width/2-6*UI_SIZE,height/2-120+2*UI_SIZE-10,12*UI_SIZE,10);
         rect(width/2-6*UI_SIZE,height/2+120+2*UI_SIZE-10,12*UI_SIZE,10);
                 
-        stroke(37.5);
-        fill(37.5);
+        stroke(player1.getPlayerColor());
+        fill(player1.getPlayerColor());
         switch (player1.getFaction()) {
             case 0:
                 rect(width/2-6*UI_SIZE,height/2-120+UI_SIZE/2,4*UI_SIZE-5,1.5*UI_SIZE);
@@ -269,6 +292,8 @@ class Menu {
                 rect(width/2+2*UI_SIZE,height/2-120+UI_SIZE/2,4*UI_SIZE,1.5*UI_SIZE);
                 break;
         }
+        stroke(player2.getPlayerColor());
+        fill(player2.getPlayerColor());
         switch (player2.getFaction()) {
             case 0:
                 rect(width/2-6*UI_SIZE,height/2+120+UI_SIZE/2,4*UI_SIZE-5,1.5*UI_SIZE);

@@ -5,10 +5,12 @@ PVector mousePosition;
 PVector origin = new PVector(0,0);
 Map map;
 Camera camera;
+Game game = new Game(false);
 int menuID = 0;
 Menu menu;
-Player player1 = new Player();
-Player player2 = new Player();
+int turn = 1;
+Player player1 = new Player(color(0,40,10));
+Player player2 = new Player(color(0,10,40));
 
 void setup() {
   size(800,600);

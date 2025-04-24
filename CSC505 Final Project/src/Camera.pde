@@ -2,11 +2,11 @@ class Camera {
 
     private PVector cameraCenter;
     private float zoom;
-    final PVector SHIFT = new PVector(width/2,height/2);
+    final PVector SHIFT = new PVector(width/2,50);
 
     public Camera() {
         this.cameraCenter = SHIFT;
-        this.zoom = 50;
+        this.zoom = 25;
     }
 
     public PVector getCameraPosition() {
@@ -22,7 +22,7 @@ class Camera {
         float CAMERA_SPEED = 0.5*zoom;
         final float ZOOM_SPEED = 1.003;
         final float MAX_ZOOM = 100;
-        final float MIN_ZOOM = 30;
+        final float MIN_ZOOM = 25;
         InputReader inputReader = InputReader.getInstance();
         if (inputReader.getKeyDown(UP) || inputReader.getKeyDown('w')) {
             cameraCenter.add(0,CAMERA_SPEED*delta/zoom);
