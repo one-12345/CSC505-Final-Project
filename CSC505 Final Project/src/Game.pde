@@ -1,7 +1,8 @@
 class Game {
 
     private int turn;
-    private boolean active;
+    private boolean active; // not actually sure what this does yet but it might be useful later
+    private boolean showDeployment;
 
     public Game(boolean b) {
         active = b;
@@ -12,11 +13,29 @@ class Game {
             stroke(player1.getPlayerColor(),191);
             fill(player1.getPlayerColor(),127);
             rect(0.5*UI_SIZE,0.4*UI_SIZE,3*UI_SIZE,0.7*UI_SIZE,UI_SIZE/5);
+            rect(0.5*UI_SIZE,height-1.1*UI_SIZE,3*UI_SIZE,0.7*UI_SIZE,UI_SIZE/5);
             stroke(100,255);
             fill(100,255);
             text("PLAYER 1", 2*UI_SIZE,UI_SIZE);
-            player1.drawHand();
+            text("TURN " + turn, 2*UI_SIZE,height-0.5*UI_SIZE);
         }
+        if (turn % 2 == 0) {
+            stroke(player2.getPlayerColor(),191);
+            fill(player2.getPlayerColor(),127);
+            rect(0.5*UI_SIZE,0.4*UI_SIZE,3*UI_SIZE,0.7*UI_SIZE,UI_SIZE/5);
+            rect(0.5*UI_SIZE,height-1.1*UI_SIZE,3*UI_SIZE,0.7*UI_SIZE,UI_SIZE/5);
+            stroke(100,255);
+            fill(100,255);
+            text("PLAYER 2", 2*UI_SIZE,UI_SIZE);
+            text("TURN " + turn, 2*UI_SIZE,height-0.5*UI_SIZE);
+        }
+        if (turn <= 2) {
+            showDeployment = true;
+        }
+        else {
+            showDeployment = false;
+        }
+        
     }
 
     public boolean getActivity() {
@@ -35,6 +54,14 @@ class Game {
         if (active) {
             turn = 1;
         }
+    }
+
+    public void nextTurn() {
+        turn++;
+    }
+
+    public int getTurn() {
+        return turn;
     }
 
 }

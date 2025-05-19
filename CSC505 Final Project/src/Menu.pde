@@ -152,6 +152,10 @@ class Menu {
                     menuID = 4;
                     timeInMenu = 0;
                 }
+                if (InputReader.getInstance().getKeyDown('\n') && timeInMenu > 200) {
+                    game.nextTurn();
+                    timeInMenu = 0;
+                }
                 break;
             case 4:
                 //PAUSE MENU

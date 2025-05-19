@@ -23,8 +23,4 @@ class Player {
         return playerColor;
     }
 
-    public void drawHand() {
-
-    }
-
 }
