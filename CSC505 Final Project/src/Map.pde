@@ -33,7 +33,7 @@ class Map {
         for (Tile t : tileMap.keySet()) {
             this.generateAdjacencies(t);
         }
-        System.out.println(tileMap);
+        //System.out.println(tileMap);
     }
 
     public void mapSquareRender() {

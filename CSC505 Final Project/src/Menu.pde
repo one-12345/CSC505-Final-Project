@@ -152,6 +152,10 @@ class Menu {
                     menuID = 4;
                     timeInMenu = 0;
                 }
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,height-UI_SIZE,width,height) && timeInMenu > 200) {
+                    game.nextTurn();
+                    timeInMenu = 0;
+                }
                 if (InputReader.getInstance().getKeyDown('\n') && timeInMenu > 200) {
                     game.nextTurn();
                     timeInMenu = 0;

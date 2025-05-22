@@ -2,10 +2,13 @@ class Game {
 
     private int turn;
     private boolean active; // not actually sure what this does yet but it might be useful later
-    private boolean showDeployment;
+    private boolean showDeploymentp1;
+    private boolean showDeploymentp2;
 
     public Game(boolean b) {
         active = b;
+        showDeploymentp1 = true;
+        showDeploymentp2 = true;
     }
 
     public void updateGame() {
@@ -18,6 +21,33 @@ class Game {
             fill(100,255);
             text("PLAYER 1", 2*UI_SIZE,UI_SIZE);
             text("TURN " + turn, 2*UI_SIZE,height-0.5*UI_SIZE);
+            if (showDeploymentp1) {
+                stroke(player1.getPlayerColor(),191);
+                fill(player1.getPlayerColor(),127);
+                rect(2*UI_SIZE,height/2-UI_SIZE,0.6*UI_SIZE,2*UI_SIZE);
+                rect(0,height/2-4*UI_SIZE,2*UI_SIZE,8*UI_SIZE);
+                stroke(100,255);
+                fill(100,255);
+                strokeWeight(8);
+                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2-0.8*UI_SIZE);
+                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2+0.8*UI_SIZE);
+                if (InputReader.getInstance().getMouseDown() && mouseIn(2*UI_SIZE,height/2-UI_SIZE,2.6*UI_SIZE,height/2+UI_SIZE)) {
+                    showDeploymentp1 = false;
+                }
+            }
+            else {
+                stroke(player1.getPlayerColor(),191);
+                fill(player1.getPlayerColor(),127);
+                rect(0,height/2-UI_SIZE,0.6*UI_SIZE,2*UI_SIZE);
+                stroke(100,255);
+                fill(100,255);
+                strokeWeight(8);
+                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2-0.8*UI_SIZE);
+                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2+0.8*UI_SIZE);
+                if (InputReader.getInstance().getMouseDown() && mouseIn(0,height/2-UI_SIZE,0.6*UI_SIZE,height/2+UI_SIZE)) {
+                    showDeploymentp1 = true;
+                }
+            }
         }
         if (turn % 2 == 0) {
             stroke(player2.getPlayerColor(),191);
@@ -28,14 +58,34 @@ class Game {
             fill(100,255);
             text("PLAYER 2", 2*UI_SIZE,UI_SIZE);
             text("TURN " + turn, 2*UI_SIZE,height-0.5*UI_SIZE);
+            if (showDeploymentp2) {
+                stroke(player2.getPlayerColor(),191);
+                fill(player2.getPlayerColor(),127);
+                rect(2*UI_SIZE,height/2-UI_SIZE,0.6*UI_SIZE,2*UI_SIZE);
+                rect(0,height/2-4*UI_SIZE,2*UI_SIZE,8*UI_SIZE);
+                stroke(100,255);
+                fill(100,255);
+                strokeWeight(8);
+                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2-0.8*UI_SIZE);
+                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2+0.8*UI_SIZE);
+                if (InputReader.getInstance().getMouseDown() && mouseIn(2*UI_SIZE,height/2-UI_SIZE,2.6*UI_SIZE,height/2+UI_SIZE)) {
+                    showDeploymentp2 = false;
+                }
+            }
+            else {
+                stroke(player2.getPlayerColor(),191);
+                fill(player2.getPlayerColor(),127);
+                rect(0,height/2-UI_SIZE,0.6*UI_SIZE,2*UI_SIZE);
+                stroke(100,255);
+                fill(100,255);
+                strokeWeight(8);
+                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2-0.8*UI_SIZE);
+                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2+0.8*UI_SIZE);
+                if (InputReader.getInstance().getMouseDown() && mouseIn(0,height/2-UI_SIZE,0.6*UI_SIZE,height/2+UI_SIZE)) {
+                    showDeploymentp2 = true;
+                }
+            }
         }
-        if (turn <= 2) {
-            showDeployment = true;
-        }
-        else {
-            showDeployment = false;
-        }
-        
     }
 
     public boolean getActivity() {
