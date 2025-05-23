@@ -6,7 +6,7 @@ class Camera {
 
     public Camera() {
         this.cameraCenter = SHIFT;
-        this.zoom = 25;
+        this.zoom = 35;
     }
 
     public PVector getCameraPosition() {

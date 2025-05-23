@@ -17,7 +17,7 @@ void setup() {
   mousePosition = new PVector(mouseX,mouseY);
   camera = new Camera();
   menu = new Menu(0);
-  map = new Map(10);
+  map = new Map(8);
 }
 
 void draw() {
