@@ -9,4 +9,5 @@ class Infantry extends Unit {
         isDeployed = false;
         locatioin = null;
     }
+    
 }

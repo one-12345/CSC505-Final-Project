@@ -7,6 +7,8 @@ abstract class Unit {
     private int RANGE; //Range - how far unit can attack from
     private boolean zoneOfControl; //Whether unit exerts zone of control
     private boolean isDeployed;
+    private boolean canMove;
+    private boolean canAttack;
     private Tile location;
 
     //Max CV is always 4
@@ -26,6 +28,20 @@ abstract class Unit {
     public void unitDeath() {
         location.empty();
         // TO FILL OUT SOON
+    }
+
+    public void refresh() {
+        canMove = true;
+        canAttack = true;
+    }
+
+    public void attack(Tile target) {
+        canAttack = false;
+        canMove = false;
+    }
+
+    public void move (Tile target) {
+        canMove = false;
     }
 
 }

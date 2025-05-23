@@ -9,4 +9,5 @@ class Artillery extends Unit {
         isDeployed = false;
         location = null;
     }
+    
 }
