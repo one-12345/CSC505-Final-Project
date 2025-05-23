@@ -1,9 +1,11 @@
 class Tile {
     
     private PVector center;
+    private Unit unit;
 
     public Tile(PVector position) {
         this.center = position.copy();
+        unit = null;
     }
 
     public PVector getCenter() {
@@ -29,6 +31,10 @@ class Tile {
 
     public String toString() {
         return this.center.toString();
+    }
+
+    public void empty() {
+        unit = null;
     }
 
 }

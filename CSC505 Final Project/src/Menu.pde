@@ -248,7 +248,7 @@ class Menu {
         fill(100);
         stroke(100);
         textSize(100);
-        text("UNTITLED", 0, -150+4*UI_SIZE/5);
+        text("HEX WARS", 0, -150+4*UI_SIZE/5);
         textSize(25);
         text("PLAY", 0, 50+UI_SIZE/5);
         text("QUIT", 0, 190+UI_SIZE/5);
