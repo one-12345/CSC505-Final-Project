@@ -172,4 +172,10 @@ class Player {
         }
     }
 
+    public void refreshUnits() {
+        for (Unit u : units) {
+            u.refresh();
+        }
+    }
+
 }

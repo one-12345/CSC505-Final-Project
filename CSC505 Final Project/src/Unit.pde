@@ -102,8 +102,15 @@ abstract class Unit {
         PVector v = location.getCenter();
         float size = 0.2*camera.getZoom();
         strokeWeight(camera.getZoom()/20);
+        color borderColor;
+        if (canAttack || canMove) {
+            borderColor = color(150,150,0);
+        }
+        else {
+            borderColor = color(50);
+        }
         if (playerColor != 0) {
-            stroke(50,255);
+            stroke(borderColor,255);
             fill(playerColor,255);
         }
         rect(camera.getZoom()*v.x+camera.getCameraPosition().x-size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-size,2*size,2*size);
@@ -115,11 +122,11 @@ abstract class Unit {
             rect(camera.getZoom()*v.x+camera.getCameraPosition().x-0.6*size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-0.4*size,1.2*size,0.8*size,0.4*size);
         }
         if (this instanceof UnitArtillery) {
-            fill(50,255);
+            fill(borderColor,255);
             circle(camera.getZoom()*v.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y),0.4*size);
         }
         if (this instanceof UnitHQ) {
-            fill(50,255);
+            fill(borderColor,255);
             textSize(size);
             text("HQ",camera.getZoom()*v.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y));
         }
