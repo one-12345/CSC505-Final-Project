@@ -15,6 +15,7 @@ abstract class Unit {
     private Tile location;
 
     private int player;
+    private color playerColor;
 
     public void deployTo(Tile location) {
         isDeployed = true;
@@ -60,6 +61,7 @@ abstract class Unit {
     }
 
     public void drag(color c) {
+        playerColor = c;
         stroke(100,191);
         strokeWeight(6);
         fill(c,127);
@@ -87,6 +89,39 @@ abstract class Unit {
         }
         else {
             isDragged = false;
+            Tile t = map.checkDrop();
+            if (t != null && t.isEmpty()) {
+                location = t;
+                isDeployed = true;
+                t.moveIn(this);
+            }
+        }
+    }
+
+    public void drawUnit() {
+        PVector v = location.getCenter();
+        float size = 0.2*camera.getZoom();
+        strokeWeight(camera.getZoom()/20);
+        if (playerColor != 0) {
+            stroke(50,255);
+            fill(playerColor,255);
+        }
+        rect(camera.getZoom()*v.x+camera.getCameraPosition().x-size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-size,2*size,2*size);
+        if (this instanceof UnitInfantry) {
+            line(camera.getZoom()*v.x+camera.getCameraPosition().x-size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-size,camera.getZoom()*v.x+camera.getCameraPosition().x+size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)+size);
+            line(camera.getZoom()*v.x+camera.getCameraPosition().x+size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-size,camera.getZoom()*v.x+camera.getCameraPosition().x-size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)+size);
+        }
+        if (this instanceof UnitArmor) {
+            rect(camera.getZoom()*v.x+camera.getCameraPosition().x-0.6*size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-0.4*size,1.2*size,0.8*size,0.4*size);
+        }
+        if (this instanceof UnitArtillery) {
+            fill(50,255);
+            circle(camera.getZoom()*v.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y),0.4*size);
+        }
+        if (this instanceof UnitHQ) {
+            fill(50,255);
+            textSize(size);
+            text("HQ",camera.getZoom()*v.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y));
         }
     }
 

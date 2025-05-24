@@ -83,17 +83,23 @@ void polygon(float x, float y, float radius, int npoints) {
   endShape(CLOSE);
 }
 
-void star(float x, float y, float radius1, float radius2, int npoints) {
-  float angle = TWO_PI / npoints;
-  float halfAngle = angle/2.0;
-  beginShape();
-  for (float a = 0; a < TWO_PI; a += angle) {
-    float sx = x + cos(a) * radius2;
-    float sy = y + sin(a) * radius2;
-    vertex(sx, sy);
-    sx = x + cos(a+halfAngle) * radius1;
-    sy = y + sin(a+halfAngle) * radius1;
-    vertex(sx, sy);
+boolean insideHexagon(PVector test, PVector center, float radius) {
+  //double radius test
+  if ((test.x-center.x)*(test.x-center.x)+(test.y-center.y)*(test.y-center.y)>radius*radius) {
+    return false;
   }
-  endShape(CLOSE);
+  if ((test.x-center.x)*(test.x-center.x)+(test.y-center.y)*(test.y-center.y)<0.75*radius*radius) {
+    return true;
+  }
+  //test for if close to border (between radii)
+  float projectedX = center.x * 2/(float)Math.sqrt(3);
+  float projectedY = 0.5*projectedX + center.y;
+  if (projectedX > radius || projectedX < -radius) {
+    return false;
+  }
+  if (projectedX-projectedY > radius || projectedX-projectedY < -radius) {
+    return false;
+  }
+  return true;
+
 }

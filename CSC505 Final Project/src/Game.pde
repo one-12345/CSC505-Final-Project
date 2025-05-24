@@ -12,6 +12,7 @@ class Game {
     }
 
     public void updateGame() {
+        textSize(32);
         if (turn % 2 == 1) {
             stroke(player1.getPlayerColor(),191);
             fill(player1.getPlayerColor(),127);

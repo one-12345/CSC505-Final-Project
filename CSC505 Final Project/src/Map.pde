@@ -18,7 +18,7 @@ class Map {
                 generationVector.y = y;
                 generationTile.setCenter(generationVector);
                 temp = generationTile.copy();
-                if (Math.random()>0.2) {
+                if (Math.random()>0.15) {
                     tileMap.put(temp, null);
                 }
             }
@@ -29,7 +29,7 @@ class Map {
                 generationVector.y = y;
                 generationTile.setCenter(generationVector);
                 temp = generationTile.copy();
-                if (Math.random()>0.2) {
+                if (Math.random()>0.15) {
                     tileMap.put(temp, null);
                 }
             }
@@ -119,5 +119,14 @@ class Map {
                 this.connectTiles(t1,t);
             }
         }
+    }
+
+    public Tile checkDrop() {
+        for (Tile t : tileMap.keySet()) {
+            if (t.getMouseOver()) {
+                return t;
+            }
+        }
+        return null;
     }
 }
