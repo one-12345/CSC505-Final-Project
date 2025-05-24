@@ -34,6 +34,7 @@ class Game {
                 if (InputReader.getInstance().getMouseDown() && mouseIn(2*UI_SIZE,height/2-UI_SIZE,2.6*UI_SIZE,height/2+UI_SIZE)) {
                     showDeploymentp1 = false;
                 }
+                player1.drawSideBarUnits();
             }
             else {
                 stroke(player1.getPlayerColor(),191);
@@ -71,6 +72,7 @@ class Game {
                 if (InputReader.getInstance().getMouseDown() && mouseIn(2*UI_SIZE,height/2-UI_SIZE,2.6*UI_SIZE,height/2+UI_SIZE)) {
                     showDeploymentp2 = false;
                 }
+                player2.drawSideBarUnits();
             }
             else {
                 stroke(player2.getPlayerColor(),191);

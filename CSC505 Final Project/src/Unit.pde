@@ -44,4 +44,12 @@ abstract class Unit {
         canMove = false;
     }
 
+    public boolean isDeployed() {
+        return isDeployed;
+    }
+
+    public void drag() {
+        
+    }
+
 }

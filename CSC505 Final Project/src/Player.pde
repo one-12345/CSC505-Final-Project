@@ -2,8 +2,7 @@ class Player {
     
     private int faction;
     private color playerColor;
-    private ArrayList<Unit> units;
-
+    private ArrayList<Unit> units = new ArrayList<Unit>();
 
     public Player(color c) {
         playerColor = c;
@@ -11,6 +10,42 @@ class Player {
 
     public void setFaction(int n) {
         faction = n;
+        units.clear();
+        switch (faction) {
+            case 0:
+                for (int i = 0; i < 8; i++) {
+                    units.add(new UnitInfantry());
+                }
+                for (int i = 0; i < 2; i++) {
+                    units.add(new UnitArmor());
+                }
+                for (int i = 0; i < 2; i++) {
+                    units.add(new UnitArtillery());
+                }
+                break;
+            case 1:
+                for (int i = 0; i < 8; i++) {
+                    units.add(new UnitInfantry());
+                }
+                for (int i = 0; i < 2; i++) {
+                    units.add(new UnitArmor());
+                }
+                for (int i = 0; i < 2; i++) {
+                    units.add(new UnitArtillery());
+                }
+                break;
+            case 2:
+                for (int i = 0; i < 8; i++) {
+                    units.add(new UnitInfantry());
+                }
+                for (int i = 0; i < 2; i++) {
+                    units.add(new UnitArmor());
+                }
+                for (int i = 0; i < 2; i++) {
+                    units.add(new UnitArtillery());
+                }
+                break;
+        }
     }
 
     public int getFaction () {
@@ -23,6 +58,67 @@ class Player {
 
     public color getPlayerColor() {
         return playerColor;
+    }
+
+    public void drawSideBarUnits() {
+        int infantryCount = 0;
+        int armorCount = 0;
+        int artilleryCount = 0;
+        // Other unit types later
+        for (Unit u : units) {
+            if (!u.isDeployed()) {
+                if (u instanceof UnitInfantry) {
+                    infantryCount++;
+                }
+                if (u instanceof UnitArmor) {
+                    armorCount++;
+                }
+                if (u instanceof UnitArtillery) {
+                    artilleryCount++;
+                }
+            }
+        }
+        stroke(100,255);
+        strokeWeight(6);
+        fill(player1.getPlayerColor(),255);
+
+        //Infantry symbol
+        rect(0.5*UI_SIZE,height/2-3.5*UI_SIZE,1*UI_SIZE,1*UI_SIZE);
+        line(0.5*UI_SIZE,height/2-3.5*UI_SIZE,1.5*UI_SIZE,height/2-2.5*UI_SIZE);
+        line(0.5*UI_SIZE,height/2-2.5*UI_SIZE,1.5*UI_SIZE,height/2-3.5*UI_SIZE);
+
+        //Armor symbol
+        rect(0.5*UI_SIZE,height/2-1.5*UI_SIZE,1*UI_SIZE,1*UI_SIZE);
+        rect(0.7*UI_SIZE,height/2-1.2*UI_SIZE,0.6*UI_SIZE,0.4*UI_SIZE,0.2*UI_SIZE);
+
+        //Artillery symbol
+        rect(0.5*UI_SIZE,height/2+0.5*UI_SIZE,1*UI_SIZE,1*UI_SIZE);
+        fill(100,255);
+        circle(UI_SIZE,height/2+UI_SIZE,0.2*UI_SIZE);
+
+        //Circles (with remaining units able to be deployed)
+        textAlign(CENTER);
+        strokeWeight(4);
+        stroke(50,255);
+        circle(1.5*UI_SIZE,height/2-2.5*UI_SIZE,0.5*UI_SIZE);
+        circle(1.5*UI_SIZE,height/2-0.5*UI_SIZE,0.5*UI_SIZE);
+        circle(1.5*UI_SIZE,height/2+1.5*UI_SIZE,0.5*UI_SIZE);
+        textSize(16);
+        fill(50,255);
+        text(infantryCount,1.5*UI_SIZE,height/2-2.4*UI_SIZE);
+        text(armorCount,1.5*UI_SIZE,height/2-0.4*UI_SIZE);
+        text(artilleryCount,1.5*UI_SIZE,height/2+1.6*UI_SIZE);
+        
+        if (InputReader.getInstance().getMouseDown() && mouseIn(0.5*UI_SIZE,height/2-3.5*UI_SIZE,1.5*UI_SIZE,height/2-2.5*UI_SIZE)) {
+            if (infantryCount > 0) {
+                for (Unit u : units) {
+                    if (!u.isDeployed()) {
+                        u.drag();
+                        break;
+                    }
+                }
+            }
+        }
     }
 
 }
