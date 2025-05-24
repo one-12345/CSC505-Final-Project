@@ -53,9 +53,6 @@ abstract class Unit {
         strokeWeight(6);
         fill(player1.getPlayerColor(),127);
         if (InputReader.getInstance().getMouseDown()) {
-            if (this instanceof UnitDummy) {
-                return;
-            }
             if (this instanceof UnitInfantry) {
                 rect(mouseX-0.5*UI_SIZE,mouseY-0.5*UI_SIZE,UI_SIZE,UI_SIZE);
                 line(mouseX-0.5*UI_SIZE,mouseY-0.5*UI_SIZE,mouseX+0.5*UI_SIZE,mouseY+0.5*UI_SIZE);
