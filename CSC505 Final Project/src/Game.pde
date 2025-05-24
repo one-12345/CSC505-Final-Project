@@ -4,6 +4,7 @@ class Game {
     private boolean active; // not actually sure what this does yet but it might be useful later
     private boolean showDeploymentp1;
     private boolean showDeploymentp2;
+    private Unit dummy = new UnitDummy();
 
     public Game(boolean b) {
         active = b;
@@ -24,13 +25,13 @@ class Game {
             if (showDeploymentp1) {
                 stroke(player1.getPlayerColor(),191);
                 fill(player1.getPlayerColor(),127);
-                rect(2*UI_SIZE,height/2-UI_SIZE,0.6*UI_SIZE,2*UI_SIZE);
+                rect(2*UI_SIZE,height/2-0.5*UI_SIZE,0.6*UI_SIZE,UI_SIZE);
                 rect(0,height/2-4*UI_SIZE,2*UI_SIZE,8*UI_SIZE);
                 stroke(100,255);
                 fill(100,255);
                 strokeWeight(8);
-                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2-0.8*UI_SIZE);
-                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2+0.8*UI_SIZE);
+                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2-0.4*UI_SIZE);
+                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2+0.4*UI_SIZE);
                 if (InputReader.getInstance().getMouseDown() && mouseIn(2*UI_SIZE,height/2-UI_SIZE,2.6*UI_SIZE,height/2+UI_SIZE)) {
                     showDeploymentp1 = false;
                 }
@@ -39,12 +40,12 @@ class Game {
             else {
                 stroke(player1.getPlayerColor(),191);
                 fill(player1.getPlayerColor(),127);
-                rect(0,height/2-UI_SIZE,0.6*UI_SIZE,2*UI_SIZE);
+                rect(0,height/2-0.5*UI_SIZE,0.6*UI_SIZE,UI_SIZE);
                 stroke(100,255);
                 fill(100,255);
                 strokeWeight(8);
-                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2-0.8*UI_SIZE);
-                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2+0.8*UI_SIZE);
+                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2-0.4*UI_SIZE);
+                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2+0.4*UI_SIZE);
                 if (InputReader.getInstance().getMouseDown() && mouseIn(0,height/2-UI_SIZE,0.6*UI_SIZE,height/2+UI_SIZE)) {
                     showDeploymentp1 = true;
                 }
@@ -62,13 +63,13 @@ class Game {
             if (showDeploymentp2) {
                 stroke(player2.getPlayerColor(),191);
                 fill(player2.getPlayerColor(),127);
-                rect(2*UI_SIZE,height/2-UI_SIZE,0.6*UI_SIZE,2*UI_SIZE);
+                rect(2*UI_SIZE,height/2-0.5*UI_SIZE,0.6*UI_SIZE,UI_SIZE);
                 rect(0,height/2-4*UI_SIZE,2*UI_SIZE,8*UI_SIZE);
                 stroke(100,255);
                 fill(100,255);
                 strokeWeight(8);
-                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2-0.8*UI_SIZE);
-                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2+0.8*UI_SIZE);
+                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2-0.4*UI_SIZE);
+                line(2.2*UI_SIZE,height/2,2.4*UI_SIZE,height/2+0.4*UI_SIZE);
                 if (InputReader.getInstance().getMouseDown() && mouseIn(2*UI_SIZE,height/2-UI_SIZE,2.6*UI_SIZE,height/2+UI_SIZE)) {
                     showDeploymentp2 = false;
                 }
@@ -77,12 +78,12 @@ class Game {
             else {
                 stroke(player2.getPlayerColor(),191);
                 fill(player2.getPlayerColor(),127);
-                rect(0,height/2-UI_SIZE,0.6*UI_SIZE,2*UI_SIZE);
+                rect(0,height/2-0.5*UI_SIZE,0.6*UI_SIZE,UI_SIZE);
                 stroke(100,255);
                 fill(100,255);
                 strokeWeight(8);
-                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2-0.8*UI_SIZE);
-                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2+0.8*UI_SIZE);
+                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2-0.4*UI_SIZE);
+                line(0.4*UI_SIZE,height/2,0.2*UI_SIZE,height/2+0.4*UI_SIZE);
                 if (InputReader.getInstance().getMouseDown() && mouseIn(0,height/2-UI_SIZE,0.6*UI_SIZE,height/2+UI_SIZE)) {
                     showDeploymentp2 = true;
                 }

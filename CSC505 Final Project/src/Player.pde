@@ -1,11 +1,13 @@
 class Player {
     
+    private final int PLAYERNUMBER;
     private int faction;
     private color playerColor;
     private ArrayList<Unit> units = new ArrayList<Unit>();
 
-    public Player(color c) {
+    public Player(color c, int n) {
         playerColor = c;
+        PLAYERNUMBER = n;
     }
 
     public void setFaction(int n) {
@@ -80,7 +82,7 @@ class Player {
         }
         stroke(100,255);
         strokeWeight(6);
-        fill(player1.getPlayerColor(),255);
+        fill(playerColor,255);
 
         //Infantry symbol
         rect(0.5*UI_SIZE,height/2-3.5*UI_SIZE,1*UI_SIZE,1*UI_SIZE);
@@ -112,9 +114,26 @@ class Player {
         if (InputReader.getInstance().getMouseDown() && mouseIn(0.5*UI_SIZE,height/2-3.5*UI_SIZE,1.5*UI_SIZE,height/2-2.5*UI_SIZE)) {
             if (infantryCount > 0) {
                 for (Unit u : units) {
-                    if (!u.isDeployed()) {
-                        u.drag();
-                        break;
+                    if (!u.isDeployed() && u instanceof UnitInfantry) {
+                        u.drag(playerColor);
+                    }
+                }
+            }
+        }
+        if (InputReader.getInstance().getMouseDown() && mouseIn(0.5*UI_SIZE,height/2-1.5*UI_SIZE,1.5*UI_SIZE,height/2-0.5*UI_SIZE)) {
+            if (armorCount > 0) {
+                for (Unit u : units) {
+                    if (!u.isDeployed() && u instanceof UnitArmor) {
+                        u.drag(playerColor);
+                    }
+                }
+            }
+        }
+        if (InputReader.getInstance().getMouseDown() && mouseIn(0.5*UI_SIZE,height/2+0.5*UI_SIZE,1.5*UI_SIZE,height/2+1.5*UI_SIZE)) {
+            if (artilleryCount > 0) {
+                for (Unit u : units) {
+                    if (!u.isDeployed() && u instanceof UnitArtillery) {
+                        u.drag(playerColor);
                     }
                 }
             }

@@ -14,6 +14,7 @@ abstract class Unit {
     private Tile location;
 
     public void deployTo(Tile location) {
+        beingDragged = false;
         isDeployed = true;
         location = location;
     }
@@ -48,8 +49,29 @@ abstract class Unit {
         return isDeployed;
     }
 
-    public void drag() {
-        
+    public void drag(color c) {
+        stroke(100,191);
+        strokeWeight(6);
+        fill(player1.getPlayerColor(),127);
+        if (InputReader.getInstance().getMouseDown()) {
+            if (this instanceof UnitDummy) {
+                return;
+            }
+            if (this instanceof UnitInfantry) {
+                rect(mouseX-0.5*UI_SIZE,mouseY-0.5*UI_SIZE,UI_SIZE,UI_SIZE);
+                line(mouseX-0.5*UI_SIZE,mouseY-0.5*UI_SIZE,mouseX+0.5*UI_SIZE,mouseY+0.5*UI_SIZE);
+                line(mouseX-0.5*UI_SIZE,mouseY+0.5*UI_SIZE,mouseX+0.5*UI_SIZE,mouseY-0.5*UI_SIZE);
+            }
+            if (this instanceof UnitArmor) {
+                rect(mouseX-0.5*UI_SIZE,mouseY-0.5*UI_SIZE,UI_SIZE,UI_SIZE);
+                rect(mouseX-0.3*UI_SIZE,mouseY-0.2*UI_SIZE,0.6*UI_SIZE,0.4*UI_SIZE,0.2*UI_SIZE);
+            }
+            if (this instanceof UnitArtillery) {
+                rect(mouseX-0.5*UI_SIZE,mouseY-0.5*UI_SIZE,UI_SIZE,UI_SIZE);
+                fill(100,255);
+                circle(mouseX,mouseY,0.2*UI_SIZE);
+            }
+        }
     }
 
 }
