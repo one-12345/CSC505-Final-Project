@@ -87,7 +87,7 @@ class Player {
                 }
             }
             if (u.isDragged()) {
-                u.drag();
+                u.drag(playerColor);
             }
         }
         stroke(100,255);

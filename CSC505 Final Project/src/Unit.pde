@@ -59,15 +59,10 @@ abstract class Unit {
         isDragged = true;
     }
 
-    public void drag() {
+    public void drag(color c) {
         stroke(100,191);
         strokeWeight(6);
-        if (player == 1) {
-            fill(player1.getPlayerColor(),127);
-        }
-        else {
-            fill(player2.getPlayerColor(),127);
-        }
+        fill(c,127);
         if (InputReader.getInstance().getMouseDown()) {
             if (this instanceof UnitInfantry) {
                 rect(mouseX-0.5*UI_SIZE,mouseY-0.5*UI_SIZE,UI_SIZE,UI_SIZE);
