@@ -26,8 +26,8 @@ class UnitArtillery extends Unit {
         isDeployed = false;
         location = null;
         isDragged = false;
-        canMove = true;
-        canAttack = true;
+        canMove = false;
+        canAttack = false;
         player = p;
     }
     
