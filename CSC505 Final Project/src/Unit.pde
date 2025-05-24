@@ -8,10 +8,13 @@ abstract class Unit {
 
     private boolean zoneOfControl; //Whether unit exerts zone of control
     private boolean isDeployed;
+    private boolean isDragged;
 
     private boolean canMove;
     private boolean canAttack;
     private Tile location;
+
+    private int player;
 
     public void deployTo(Tile location) {
         isDeployed = true;
@@ -48,10 +51,23 @@ abstract class Unit {
         return isDeployed;
     }
 
-    public void drag(color c) {
+    public boolean isDragged() {
+        return isDragged;
+    }
+
+    public void startDrag() {
+        isDragged = true;
+    }
+
+    public void drag() {
         stroke(100,191);
         strokeWeight(6);
-        fill(player1.getPlayerColor(),127);
+        if (player == 1) {
+            fill(player1.getPlayerColor(),127);
+        }
+        else {
+            fill(player2.getPlayerColor(),127);
+        }
         if (InputReader.getInstance().getMouseDown()) {
             if (this instanceof UnitInfantry) {
                 rect(mouseX-0.5*UI_SIZE,mouseY-0.5*UI_SIZE,UI_SIZE,UI_SIZE);
@@ -67,6 +83,9 @@ abstract class Unit {
                 fill(100,255);
                 circle(mouseX,mouseY,0.2*UI_SIZE);
             }
+        }
+        else {
+            isDragged = false;
         }
     }
 

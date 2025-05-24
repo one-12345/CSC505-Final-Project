@@ -8,19 +8,27 @@ class UnitArmor extends Unit {
 
     private boolean zoneOfControl; //Whether unit exerts zone of control
     private boolean isDeployed;
+    private boolean isDragged;
 
     private boolean canMove;
     private boolean canAttack;
     private Tile location;
 
-    public UnitArmor() {
+    private int player;
+
+    public UnitArmor(int p) {
         cv = 4;
         drm = 2;
         hp = 10;
         mob = 6;
         range = 1;
+        zoneOfControl = true;
         isDeployed = false;
         location = null;
+        isDragged = false;
+        canMove = true;
+        canAttack = true;
+        player = p;
     }
 
 }

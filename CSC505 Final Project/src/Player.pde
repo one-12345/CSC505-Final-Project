@@ -1,13 +1,13 @@
 class Player {
     
-    private final int PLAYERNUMBER;
+    private int player;
     private int faction;
     private color playerColor;
     private ArrayList<Unit> units = new ArrayList<Unit>();
 
     public Player(color c, int n) {
         playerColor = c;
-        PLAYERNUMBER = n;
+        player = n;
     }
 
     public void setFaction(int n) {
@@ -16,35 +16,35 @@ class Player {
         switch (faction) {
             case 0:
                 for (int i = 0; i < 8; i++) {
-                    units.add(new UnitInfantry());
+                    units.add(new UnitInfantry(player));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArmor());
+                    units.add(new UnitArmor(player));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArtillery());
+                    units.add(new UnitArtillery(player));
                 }
                 break;
             case 1:
                 for (int i = 0; i < 8; i++) {
-                    units.add(new UnitInfantry());
+                    units.add(new UnitInfantry(player));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArmor());
+                    units.add(new UnitArmor(player));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArtillery());
+                    units.add(new UnitArtillery(player));
                 }
                 break;
             case 2:
                 for (int i = 0; i < 8; i++) {
-                    units.add(new UnitInfantry());
+                    units.add(new UnitInfantry(player));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArmor());
+                    units.add(new UnitArmor(player));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArtillery());
+                    units.add(new UnitArtillery(player));
                 }
                 break;
         }
@@ -68,7 +68,7 @@ class Player {
         int artilleryCount = 0;
         // Other unit types later
         for (Unit u : units) {
-            if (!u.isDeployed()) {
+            if (!u.isDeployed() && !u.isDragged()) {
                 if (u instanceof UnitInfantry) {
                     infantryCount++;
                 }
@@ -78,6 +78,9 @@ class Player {
                 if (u instanceof UnitArtillery) {
                     artilleryCount++;
                 }
+            }
+            if (u.isDragged()) {
+                u.drag();
             }
         }
         stroke(100,255);
@@ -115,7 +118,8 @@ class Player {
             if (infantryCount > 0) {
                 for (Unit u : units) {
                     if (!u.isDeployed() && u instanceof UnitInfantry) {
-                        u.drag(playerColor);
+                        u.startDrag();
+                        break;
                     }
                 }
             }
@@ -124,7 +128,8 @@ class Player {
             if (armorCount > 0) {
                 for (Unit u : units) {
                     if (!u.isDeployed() && u instanceof UnitArmor) {
-                        u.drag(playerColor);
+                        u.startDrag();
+                        break;
                     }
                 }
             }
@@ -133,7 +138,8 @@ class Player {
             if (artilleryCount > 0) {
                 for (Unit u : units) {
                     if (!u.isDeployed() && u instanceof UnitArtillery) {
-                        u.drag(playerColor);
+                        u.startDrag();
+                        break;
                     }
                 }
             }
