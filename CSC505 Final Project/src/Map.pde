@@ -18,7 +18,7 @@ class Map {
                 generationVector.y = y;
                 generationTile.setCenter(generationVector);
                 temp = generationTile.copy();
-                if (Math.random()>0.25) {
+                if (Math.random()>0.2) {
                     tileMap.put(temp, null);
                 }
             }
@@ -62,13 +62,8 @@ class Map {
     }
 
     public void drawMap() {
-        PVector v;
         for (Tile t : tileMap.keySet()) {
-            strokeWeight(camera.getZoom()/20);
-            stroke(25);
-            fill(100);
-            v = t.getCenter();
-            polygon(camera.getZoom()*v.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y),camera.getZoom()/2,6);
+            t.drawTile();
         }
     }
 

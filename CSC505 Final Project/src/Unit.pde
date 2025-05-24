@@ -83,6 +83,12 @@ abstract class Unit {
                 fill(100,255);
                 circle(mouseX,mouseY,0.2*UI_SIZE);
             }
+            if (this instanceof UnitHQ) {
+                rect(mouseX-0.5*UI_SIZE,mouseY-0.5*UI_SIZE,UI_SIZE,UI_SIZE);
+                fill(100,255);
+                textSize(0.5*UI_SIZE);
+                text("HQ",mouseX, mouseY+0.1*UI_SIZE);
+            }
         }
         else {
             isDragged = false;

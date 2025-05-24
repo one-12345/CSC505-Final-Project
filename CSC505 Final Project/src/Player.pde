@@ -24,6 +24,7 @@ class Player {
                 for (int i = 0; i < 2; i++) {
                     units.add(new UnitArtillery(player));
                 }
+                units.add(new UnitHQ(player));
                 break;
             case 1:
                 for (int i = 0; i < 8; i++) {
@@ -35,6 +36,7 @@ class Player {
                 for (int i = 0; i < 2; i++) {
                     units.add(new UnitArtillery(player));
                 }
+                units.add(new UnitHQ(player));
                 break;
             case 2:
                 for (int i = 0; i < 8; i++) {
@@ -46,6 +48,7 @@ class Player {
                 for (int i = 0; i < 2; i++) {
                     units.add(new UnitArtillery(player));
                 }
+                units.add(new UnitHQ(player));
                 break;
         }
     }
@@ -66,6 +69,7 @@ class Player {
         int infantryCount = 0;
         int armorCount = 0;
         int artilleryCount = 0;
+        int flagCount = 0;
         // Other unit types later
         for (Unit u : units) {
             if (!u.isDeployed() && !u.isDragged()) {
@@ -77,6 +81,9 @@ class Player {
                 }
                 if (u instanceof UnitArtillery) {
                     artilleryCount++;
+                }
+                if (u instanceof UnitHQ) {
+                    flagCount++;
                 }
             }
             if (u.isDragged()) {
@@ -101,6 +108,13 @@ class Player {
         fill(100,255);
         circle(UI_SIZE,height/2+UI_SIZE,0.2*UI_SIZE);
 
+        //HQ symbol
+        fill(playerColor,255);
+        rect(0.5*UI_SIZE,height/2+2.5*UI_SIZE,1*UI_SIZE,1*UI_SIZE);
+        fill(100,255);
+        textSize(0.5*UI_SIZE);
+        text("HQ",UI_SIZE, height/2+3.1*UI_SIZE);
+
         //Circles (with remaining units able to be deployed)
         textAlign(CENTER);
         strokeWeight(4);
@@ -108,11 +122,13 @@ class Player {
         circle(1.5*UI_SIZE,height/2-2.5*UI_SIZE,0.5*UI_SIZE);
         circle(1.5*UI_SIZE,height/2-0.5*UI_SIZE,0.5*UI_SIZE);
         circle(1.5*UI_SIZE,height/2+1.5*UI_SIZE,0.5*UI_SIZE);
+        circle(1.5*UI_SIZE,height/2+3.5*UI_SIZE,0.5*UI_SIZE);
         textSize(16);
         fill(50,255);
         text(infantryCount,1.5*UI_SIZE,height/2-2.4*UI_SIZE);
         text(armorCount,1.5*UI_SIZE,height/2-0.4*UI_SIZE);
         text(artilleryCount,1.5*UI_SIZE,height/2+1.6*UI_SIZE);
+        text(flagCount,1.5*UI_SIZE,height/2+3.6*UI_SIZE);
         
         if (InputReader.getInstance().getMouseDown() && mouseIn(0.5*UI_SIZE,height/2-3.5*UI_SIZE,1.5*UI_SIZE,height/2-2.5*UI_SIZE)) {
             if (infantryCount > 0) {
@@ -138,6 +154,16 @@ class Player {
             if (artilleryCount > 0) {
                 for (Unit u : units) {
                     if (!u.isDeployed() && u instanceof UnitArtillery) {
+                        u.startDrag();
+                        break;
+                    }
+                }
+            }
+        }
+        if (InputReader.getInstance().getMouseDown() && mouseIn(0.5*UI_SIZE,height/2+2.5*UI_SIZE,1.5*UI_SIZE,height/2+3.5*UI_SIZE)) {
+            if (flagCount > 0) {
+                for (Unit u : units) {
+                    if (!u.isDeployed() && u instanceof UnitHQ) {
                         u.startDrag();
                         break;
                     }
