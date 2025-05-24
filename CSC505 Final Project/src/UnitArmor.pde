@@ -1,4 +1,4 @@
-abstract class Unit {
+class UnitArmor extends Unit {
 
     private int cv; //Combat Value, represents size of the unit and scales the # of dice rolled in combat
     private int drm; //Dice Roll Modifier, represents combat power per CV by adding to each dice roll
@@ -13,35 +13,14 @@ abstract class Unit {
     private boolean canAttack;
     private Tile location;
 
-    public void deployTo(Tile location) {
-        isDeployed = true;
-        location = location;
-    }
-
-    public void takeDamage(int dmg) {
-        cv -= dmg/hp;
-        if (cv < 1) {
-            unitDeath();
-        }
-    }
-
-    public void unitDeath() {
-        location.empty();
-        // TO FILL OUT SOON
-    }
-
-    public void refresh() {
-        canMove = true;
-        canAttack = true;
-    }
-
-    public void attack(Tile target) {
-        canAttack = false;
-        canMove = false;
-    }
-
-    public void move (Tile target) {
-        canMove = false;
+    public UnitArmor() {
+        cv = 4;
+        drm = 2;
+        hp = 10;
+        mob = 6;
+        range = 1;
+        isDeployed = false;
+        location = null;
     }
 
 }

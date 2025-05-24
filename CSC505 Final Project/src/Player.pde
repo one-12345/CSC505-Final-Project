@@ -2,6 +2,8 @@ class Player {
     
     private int faction;
     private color playerColor;
+    private ArrayList<Unit> units;
+
 
     public Player(color c) {
         playerColor = c;
