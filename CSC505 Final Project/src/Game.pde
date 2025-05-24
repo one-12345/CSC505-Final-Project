@@ -4,7 +4,6 @@ class Game {
     private boolean active; // not actually sure what this does yet but it might be useful later
     private boolean showDeploymentp1;
     private boolean showDeploymentp2;
-    private Unit dummy = new UnitDummy();
 
     public Game(boolean b) {
         active = b;

@@ -14,7 +14,6 @@ abstract class Unit {
     private Tile location;
 
     public void deployTo(Tile location) {
-        beingDragged = false;
         isDeployed = true;
         location = location;
     }
