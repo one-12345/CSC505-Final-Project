@@ -20,7 +20,7 @@ class Tile {
     public void drawTile() {
         strokeWeight(camera.getZoom()/20);
         stroke(25);
-        fill(100);
+        fill(50);
         if (mouseOver()) {
             fill(200);
             mouseOver = true;

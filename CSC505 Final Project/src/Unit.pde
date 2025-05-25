@@ -107,7 +107,7 @@ abstract class Unit {
             borderColor = color(150,150,0);
         }
         else {
-            borderColor = color(50);
+            borderColor = color(100);
         }
         if (playerColor != 0) {
             stroke(borderColor,255);

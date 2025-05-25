@@ -29,18 +29,6 @@ void draw() {
   menu.updateMenu();
 }
 
-public PVector hexToRect(PVector hexCoords) {
-        PVector rectCoords = new PVector(0,0);
-        //HIGH PRIORITY
-        return rectCoords;
-}
-
-public PVector rectToHex(PVector rectCoords) {
-        PVector hexCoords = new PVector(0,0);
-        //HIGH PRIORITY
-        return hexCoords;
-}
-
 public boolean mouseIn(float x1, float y1, float x2, float y2) {
   return (mousePosition.x > x1 && mousePosition.x<x2 && mousePosition.y > y1 && mousePosition.y<y2);
 }
