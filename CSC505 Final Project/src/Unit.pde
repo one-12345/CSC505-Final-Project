@@ -31,7 +31,12 @@ abstract class Unit {
 
     public void unitDeath() {
         location.empty();
-        // TO FILL OUT SOON
+        if (player == 1) {
+            player1.removeUnit(this);
+        }
+        if (player == 2) {
+            player2.removeUnit(this);
+        }
     }
 
     public void refresh() {

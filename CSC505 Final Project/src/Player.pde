@@ -178,4 +178,8 @@ class Player {
         }
     }
 
+    public void removeUnit(Unit u) {
+        units.remove(u);
+    }
+
 }

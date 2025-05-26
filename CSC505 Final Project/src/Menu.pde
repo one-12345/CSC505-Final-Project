@@ -110,10 +110,16 @@ class Menu {
                 }
                 break;
             case 3:
+                
                 //PLAY MENU
                 background(25,25,25);
                 strokeWeight(6);
                 textSize(32);
+                
+                //MAP RENDER
+                camera.cameraMovement();
+                map.drawMap();
+                game.updateGame();
 
                 //Pause button
                 stroke(50,255);
@@ -136,10 +142,7 @@ class Menu {
                 //MAP SQUARE RENDER (for testing)
                 //map.mapSquareRender();
 
-                //MAP RENDER
-                camera.cameraMovement();
-                map.drawMap();
-                game.updateGame();
+                
 
                 //Check button presses
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,0,width,UI_SIZE)) {
