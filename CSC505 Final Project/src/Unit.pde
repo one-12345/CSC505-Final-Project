@@ -8,7 +8,9 @@ abstract class Unit {
 
     private boolean zoneOfControl; //Whether unit exerts zone of control
     private boolean isDeployed;
+    private boolean recentlyDeployed; //If it is the first turn Unit is deployed
     private boolean isDragged;
+    private boolean isSelected;
 
     private boolean canMove;
     private boolean canAttack;
@@ -16,11 +18,6 @@ abstract class Unit {
 
     private int player;
     private color playerColor;
-
-    public void deployTo(Tile location) {
-        isDeployed = true;
-        location = location;
-    }
 
     public void takeDamage(int dmg) {
         cv -= dmg/hp;
@@ -42,6 +39,7 @@ abstract class Unit {
     public void refresh() {
         canMove = true;
         canAttack = true;
+        recentlyDeployed = false;
     }
 
     public void attack(Tile target) {
@@ -63,6 +61,14 @@ abstract class Unit {
 
     public void startDrag() {
         isDragged = true;
+    }
+
+    public void select() {
+        isSelected = true;
+    }
+
+    public void deselect() {
+        isSelected = false;
     }
 
     public void drag(color c) {
@@ -94,10 +100,11 @@ abstract class Unit {
         }
         else {
             isDragged = false;
-            Tile t = map.checkDrop();
+            Tile t = map.checkTileOver();
             if (t != null && t.isEmpty()) {
                 location = t;
                 isDeployed = true;
+                recentlyDeployed = true;
                 t.moveIn(this);
             }
         }
@@ -110,9 +117,15 @@ abstract class Unit {
         color borderColor;
         if (canAttack || canMove) {
             borderColor = color(150,150,0);
+            if (isSelected) {
+                borderColor = color(150,0,0);
+            }
         }
         else {
             borderColor = color(100);
+            if (isSelected) {
+                borderColor = color(50,0,0);
+            }
         }
         if (playerColor != 0) {
             stroke(borderColor,255);

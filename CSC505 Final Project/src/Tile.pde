@@ -67,4 +67,8 @@ class Tile {
         return mouseOver;
     }
 
+    public Unit getUnitIn() {
+        return unit;
+    }
+
 }

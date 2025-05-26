@@ -48,6 +48,7 @@ class Menu {
                 line(width-UI_SIZE+10, 10, width-10, UI_SIZE-10);
                 line(width-10, 10, width-UI_SIZE+10, UI_SIZE-10);
     
+                //Volume Sliders
 
                 //Check button presses
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,0,width,UI_SIZE)) {
@@ -145,6 +146,9 @@ class Menu {
                 
 
                 //Check button presses
+
+                Tile t = map.checkTileOver();
+
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width-UI_SIZE,0,width,UI_SIZE)) {
                     previousMenu = menuID;
                     menuID = 4;
@@ -162,6 +166,11 @@ class Menu {
                 if (InputReader.getInstance().getKeyDown('\n') && timeInMenu > 200) {
                     game.nextTurn();
                     timeInMenu = 0;
+                }
+                if (InputReader.getInstance().getMouseDown() && t != null) {
+                    if (t.getUnitIn() != null) {
+                        t.getUnitIn().select();
+                    }
                 }
                 break;
             case 4:

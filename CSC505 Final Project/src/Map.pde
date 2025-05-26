@@ -121,7 +121,7 @@ class Map {
         }
     }
 
-    public Tile checkDrop() {
+    public Tile checkTileOver() {
         for (Tile t : tileMap.keySet()) {
             if (t.getMouseOver()) {
                 return t;

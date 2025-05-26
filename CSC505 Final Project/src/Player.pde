@@ -174,7 +174,9 @@ class Player {
 
     public void refreshUnits() {
         for (Unit u : units) {
-            u.refresh();
+            if (u.isDeployed()) {
+                u.refresh();
+            }
         }
     }
 

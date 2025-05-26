@@ -8,7 +8,9 @@ class UnitHQ extends Unit {
 
     private boolean zoneOfControl; //Whether unit exerts zone of control
     private boolean isDeployed;
+    private boolean recentlyDeployed; //If it is the first turn Unit is deployed
     private boolean isDragged;
+    private boolean isSelected;
 
     private boolean canMove;
     private boolean canAttack;
@@ -24,6 +26,8 @@ class UnitHQ extends Unit {
         range = 0;
         zoneOfControl = false;
         isDeployed = false;
+        recentlyDeployed = false;
+        isSelected = false;
         location = null;
         isDragged = false;
         canMove = false;
