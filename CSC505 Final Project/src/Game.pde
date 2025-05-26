@@ -111,13 +111,13 @@ class Game {
 
     public void nextTurn() {
         turn++;
-        if (turn > 2) {
-            if (turn % 2 == 1) {
-                player1.refreshUnits();
-            } 
-            else {
-                player2.refreshUnits();
-            }
+        if (turn % 2 == 1) {
+            player1.refreshUnits();
+            player2.deselectAll();
+        } 
+        else {
+            player2.refreshUnits();
+            player1.deselectAll();
         }
     }
 

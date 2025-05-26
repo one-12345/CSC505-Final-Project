@@ -20,6 +20,8 @@ void setup() {
   camera = new Camera();
   menu = new Menu(0);
   map = new Map(8);
+  player1.setFaction(0);
+  player2.setFaction(0);
   //SinOsc sin = new SinOsc(this);
   //sin.play(200, 0.2);
   //sin = new SinOsc(this);

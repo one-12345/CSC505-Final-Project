@@ -173,7 +173,9 @@ class Menu {
                 }
                 if (InputReader.getInstance().getMouseDown() && t != null) {
                     if (t.getUnitIn() != null) {
-                        t.getUnitIn().select();
+                        if (t.getUnitIn().player() % 2 == game.getTurn() % 2) {
+                            t.getUnitIn().select();
+                        }
                     }
                 }
                 break;

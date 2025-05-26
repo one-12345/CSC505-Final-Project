@@ -71,6 +71,10 @@ abstract class Unit {
         isSelected = false;
     }
 
+    public int player() {
+        return player;
+    }
+
     public void drag(color c) {
         playerColor = c;
         stroke(100,191);

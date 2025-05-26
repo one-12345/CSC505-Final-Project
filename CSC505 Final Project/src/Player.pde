@@ -1,13 +1,13 @@
 class Player {
     
-    private int player;
+    private int playerID;
     private int faction;
     private color playerColor;
     private ArrayList<Unit> units = new ArrayList<Unit>();
 
     public Player(color c, int n) {
         playerColor = c;
-        player = n;
+        playerID = n;
     }
 
     public void setFaction(int n) {
@@ -16,39 +16,39 @@ class Player {
         switch (faction) {
             case 0:
                 for (int i = 0; i < 8; i++) {
-                    units.add(new UnitInfantry(player));
+                    units.add(new UnitInfantry(playerID));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArmor(player));
+                    units.add(new UnitArmor(playerID));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArtillery(player));
+                    units.add(new UnitArtillery(playerID));
                 }
-                units.add(new UnitHQ(player));
+                units.add(new UnitHQ(playerID));
                 break;
             case 1:
                 for (int i = 0; i < 8; i++) {
-                    units.add(new UnitInfantry(player));
+                    units.add(new UnitInfantry(playerID));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArmor(player));
+                    units.add(new UnitArmor(playerID));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArtillery(player));
+                    units.add(new UnitArtillery(playerID));
                 }
-                units.add(new UnitHQ(player));
+                units.add(new UnitHQ(playerID));
                 break;
             case 2:
                 for (int i = 0; i < 8; i++) {
-                    units.add(new UnitInfantry(player));
+                    units.add(new UnitInfantry(playerID));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArmor(player));
+                    units.add(new UnitArmor(playerID));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArtillery(player));
+                    units.add(new UnitArtillery(playerID));
                 }
-                units.add(new UnitHQ(player));
+                units.add(new UnitHQ(playerID));
                 break;
         }
     }
@@ -188,6 +188,10 @@ class Player {
         for (Unit u : units) {
             u.deselect();
         }
+    }
+
+    public int returnID() {
+        return playerID;
     }
 
 }
