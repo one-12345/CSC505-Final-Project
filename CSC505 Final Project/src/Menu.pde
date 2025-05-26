@@ -167,6 +167,10 @@ class Menu {
                     game.nextTurn();
                     timeInMenu = 0;
                 }
+                if (InputReader.getInstance().getMouseDown()) {
+                    player1.deselectAll();
+                    player2.deselectAll();
+                }
                 if (InputReader.getInstance().getMouseDown() && t != null) {
                     if (t.getUnitIn() != null) {
                         t.getUnitIn().select();

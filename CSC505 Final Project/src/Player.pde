@@ -184,4 +184,10 @@ class Player {
         units.remove(u);
     }
 
+    public void deselectAll() {
+        for (Unit u : units) {
+            u.deselect();
+        }
+    }
+
 }
