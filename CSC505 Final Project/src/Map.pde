@@ -129,4 +129,11 @@ class Map {
         }
         return null;
     }
+
+    public ArrayList<Tile> getConnections(Tile t) {
+        if (tileMap.keySet().contains(t)) {
+            return tileMap.get(t);
+        }
+        return null;
+    }
 }

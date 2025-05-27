@@ -154,4 +154,33 @@ abstract class Unit {
         }
     }
 
+    public ArrayList<Tile> BFSsearch(int range) {
+        ArrayList<Tile> moveTargets = new ArrayList<Tile>();
+        ArrayList<Tile> connections = new ArrayList<Tile>();
+        Queue<Tile> q = new LinkedList<Tile>();
+        Queue<Tile> nextq = new LinkedList<Tile>();
+        q.add(location);
+
+        for (int i = 0; i < range; i++) {
+            //each 'step' of BFS
+            while (!q.isEmpty()) {
+                //each step of while adds the connections of each in q
+                moveTargets.add(q.peek());
+                connections = map.getConnections(q.remove());
+                for (Tile t : connections) {
+                    if (!moveTargets.contains(t) && !nextq.contains(t) && !q.contains(t)) {
+                        nextq.add(t);
+                    }
+                }
+            }
+            //has complete nextq of all adjacent to current q.
+            for (Tile t : nextq) {
+                q.add(nextq.remove());
+            }
+        }
+
+        return moveTargets;
+
+    }
+
 }

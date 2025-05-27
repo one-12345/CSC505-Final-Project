@@ -70,5 +70,4 @@ class Tile {
     public Unit getUnitIn() {
         return unit;
     }
-
 }

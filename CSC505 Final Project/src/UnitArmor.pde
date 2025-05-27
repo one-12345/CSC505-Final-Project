@@ -33,7 +33,6 @@ class UnitArmor extends Unit {
         canMove = false;
         canAttack = false;
         player = p;
-        System.out.println(player);
     }
 
     public int player() {
