@@ -43,7 +43,6 @@ class UnitArmor extends Unit {
         if (!super.canMove()) {
             return 0;
         }
-        System.out.println("yeye stuff work");
         return mob;
     }
 

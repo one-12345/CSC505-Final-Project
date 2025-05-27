@@ -83,6 +83,13 @@ abstract class Unit {
         isSelected = false;
     }
 
+    public void moveTo(Tile t) {
+        location.empty();
+        location = t;
+        location.moveIn(this);
+        canMove = false;
+    }
+
     public int player() {
         return player;
     }
@@ -151,16 +158,22 @@ abstract class Unit {
         float size = 0.2*camera.getZoom();
         strokeWeight(camera.getZoom()/20);
         color borderColor;
-        if (canAttack || canMove) {
-            borderColor = color(150,150,0);
+        if (canAttack && canMove) {
+            borderColor = color(0,100,0);
             if (isSelected) {
-                borderColor = color(150,0,0);
+                borderColor = color(0,150,0);
+            }
+        }
+        else if (canAttack) {
+            borderColor = color(100,100,0);
+            if (isSelected) {
+                borderColor = color(150,150,0);
             }
         }
         else {
             borderColor = color(100);
             if (isSelected) {
-                borderColor = color(50,0,0);
+                borderColor = color(50);
             }
         }
         if (playerColor != 0) {

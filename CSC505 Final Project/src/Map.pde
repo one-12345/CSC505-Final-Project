@@ -73,6 +73,9 @@ class Map {
                     int range = u.mob();
                     for (Tile m : u.bfssearch(range)) {
                         m.drawHighlightedTile();
+                        if (InputReader.getInstance().getMouseDown() && m.mouseOver()) {
+                            u.moveTo(m);
+                        }
                     }
                 }
             }
