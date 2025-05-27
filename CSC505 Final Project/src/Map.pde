@@ -70,11 +70,18 @@ class Map {
             u = t.getUnitIn();
             if (u != null) {
                 if (u.isSelected()) {
-                    int range = u.mob();
-                    for (Tile m : u.bfssearch(range)) {
-                        m.drawHighlightedTile();
+                    int mob = u.mob();
+                    int range = u.range();
+                    for (Tile m : u.bfsmovesearch(mob)) {
+                        m.drawMoveTile();
                         if (InputReader.getInstance().getMouseDown() && m.mouseOver()) {
                             u.moveTo(m);
+                        }
+                    }
+                    for (Tile m : u.bfsattacksearch(range)) {
+                        m.drawAttackTile();
+                        if (InputReader.getInstance().getMouseDown() && m.mouseOver()) {
+                            //u.attack(m);
                         }
                     }
                 }

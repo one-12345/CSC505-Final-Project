@@ -71,7 +71,7 @@ class Tile {
         return unit;
     }
 
-    public void drawHighlightedTile() {
+    public void drawMoveTile() {
         strokeWeight(camera.getZoom()/20);
         stroke(25);
         fill(100,100,0);
@@ -83,5 +83,20 @@ class Tile {
             mouseOver = false;
         }
         polygon(camera.getZoom()*center.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(center.y+Math.abs(center.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y),camera.getZoom()/2,6);
+    }
+
+    public void drawAttackTile() {
+        strokeWeight(camera.getZoom()/20);
+        stroke(25);
+        fill(100,0,0);
+        if (mouseOver()) {
+            fill(0,200,0);
+            mouseOver = true;
+        }
+        else {
+            mouseOver = false;
+        }
+        polygon(camera.getZoom()*center.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(center.y+Math.abs(center.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y),camera.getZoom()/2,6);
+        unit.drawUnit();
     }
 }

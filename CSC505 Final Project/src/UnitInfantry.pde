@@ -45,4 +45,11 @@ class UnitInfantry extends Unit {
         }
         return mob;
     }
+
+    @Override public int range() {
+        if (!super.canAttack()) {
+            return 0;
+        }
+        return range;
+    }
 }

@@ -114,6 +114,26 @@ abstract class Unit {
         return -1;
     }
 
+    public int range() {
+        if (this instanceof UnitInfantry) {
+            UnitInfantry u = (UnitInfantry) this;
+            return u.range();
+        }
+        if (this instanceof UnitArmor) {
+            UnitArmor u = (UnitArmor) this;
+            return u.range();
+        }
+        if (this instanceof UnitArtillery) {
+            UnitArtillery u = (UnitArtillery) this;
+            return u.range();
+        }
+        if (this instanceof UnitHQ) {
+            UnitHQ u = (UnitHQ) this;
+            return u.range();
+        }
+        return -1;
+    }
+
     public void drag(color c) {
         playerColor = c;
         stroke(100,191);
@@ -199,7 +219,7 @@ abstract class Unit {
         }
     }
 
-    public ArrayList<Tile> bfssearch(int range) {
+    public ArrayList<Tile> bfsmovesearch(int range) {
         ArrayList<Tile> moveTargets = new ArrayList<Tile>();
         ArrayList<Tile> connections = new ArrayList<Tile>();
         Queue<Tile> q = new LinkedList<Tile>();
@@ -225,6 +245,39 @@ abstract class Unit {
         moveTargets.remove(location);
         return moveTargets;
 
+    }
+
+    public ArrayList<Tile> bfsattacksearch(int range) {
+        ArrayList<Tile> attackTargets = new ArrayList<Tile>();
+        ArrayList<Tile> connections = new ArrayList<Tile>();
+        Queue<Tile> q = new LinkedList<Tile>();
+        Queue<Tile> nextq = new LinkedList<Tile>();
+        q.add(location);
+        for (int i = 0; i <= range; i++) {
+            //each 'step' of BFS
+            while (!q.isEmpty()) {
+                //each step of while adds the connections of each in q
+                attackTargets.add(q.peek());
+                connections = map.getConnections(q.remove());
+                for (Tile t : connections) {
+                    if (!attackTargets.contains(t) && !nextq.contains(t) && !q.contains(t)) {
+                        nextq.add(t);
+                    }
+                }
+            }
+            //has complete nextq of all adjacent to current q.
+            while (!nextq.isEmpty()) {
+                q.add(nextq.remove());
+            }
+        }
+        attackTargets.remove(location);
+        ArrayList<Tile> finalTargets = new ArrayList<Tile>();
+        for (Tile t : attackTargets) {
+            if (!t.isEmpty() && t.getUnitIn().player() % 2 != game.getTurn() % 2) {
+                finalTargets.add(t);
+            }
+        }
+        return finalTargets;
     }
 
 }
