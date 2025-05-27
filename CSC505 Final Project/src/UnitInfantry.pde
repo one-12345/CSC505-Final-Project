@@ -22,7 +22,7 @@ class UnitInfantry extends Unit {
         cv = 4;
         drm = 0;
         hp = 8;
-        mob = 3;
+        mob = 2;
         range = 1;
         zoneOfControl = true;
         isDeployed = false;

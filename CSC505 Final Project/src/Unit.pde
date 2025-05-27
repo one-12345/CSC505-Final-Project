@@ -199,7 +199,7 @@ abstract class Unit {
                 moveTargets.add(q.peek());
                 connections = map.getConnections(q.remove());
                 for (Tile t : connections) {
-                    if (!moveTargets.contains(t) && !nextq.contains(t) && !q.contains(t)) {
+                    if (!moveTargets.contains(t) && !nextq.contains(t) && !q.contains(t) && t.isEmpty()) {
                         nextq.add(t);
                     }
                 }

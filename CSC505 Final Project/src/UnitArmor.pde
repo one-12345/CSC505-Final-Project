@@ -22,7 +22,7 @@ class UnitArmor extends Unit {
         cv = 4;
         drm = 2;
         hp = 10;
-        mob = 6;
+        mob = 5;
         range = 1;
         zoneOfControl = true;
         isDeployed = false;

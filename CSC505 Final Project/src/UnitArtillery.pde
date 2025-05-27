@@ -22,7 +22,7 @@ class UnitArtillery extends Unit {
         cv = 4;
         drm = -1;
         hp = 4;
-        mob = 2;
+        mob = 1;
         range = 3;
         zoneOfControl = false;
         isDeployed = false;
