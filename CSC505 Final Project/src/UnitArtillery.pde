@@ -35,8 +35,15 @@ class UnitArtillery extends Unit {
         player = p;
     }
 
-    public int player() {
+    @Override public int player() {
         return player;
+    }
+
+    @Override public int mob() {
+        if (!super.canMove()) {
+            return 0;
+        }
+        return mob;
     }
     
 }

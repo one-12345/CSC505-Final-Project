@@ -35,8 +35,16 @@ class UnitArmor extends Unit {
         player = p;
     }
 
-    public int player() {
+    @Override public int player() {
         return player;
+    }
+
+    @Override public int mob() {
+        if (!super.canMove()) {
+            return 0;
+        }
+        System.out.println("yeye stuff work");
+        return mob;
     }
 
 }

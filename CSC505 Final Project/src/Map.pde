@@ -62,8 +62,20 @@ class Map {
     }
 
     public void drawMap() {
+        Unit u;
         for (Tile t : tileMap.keySet()) {
             t.drawTile();
+        }
+        for (Tile t : tileMap.keySet()) {
+            u = t.getUnitIn();
+            if (u != null) {
+                if (u.isSelected()) {
+                    int range = u.mob();
+                    for (Tile m : u.bfssearch(range)) {
+                        m.drawHighlightedTile();
+                    }
+                }
+            }
         }
     }
 

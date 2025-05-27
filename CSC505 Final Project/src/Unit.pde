@@ -59,6 +59,18 @@ abstract class Unit {
         return isDragged;
     }
 
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public boolean canMove() {
+        return canMove;
+    }
+
+    public boolean canAttack() {
+        return canAttack;
+    }
+
     public void startDrag() {
         isDragged = true;
     }
@@ -73,6 +85,26 @@ abstract class Unit {
 
     public int player() {
         return player;
+    }
+
+    public int mob() {
+        if (this instanceof UnitInfantry) {
+            UnitInfantry u = (UnitInfantry) this;
+            return u.mob();
+        }
+        if (this instanceof UnitArmor) {
+            UnitArmor u = (UnitArmor) this;
+            return u.mob();
+        }
+        if (this instanceof UnitArtillery) {
+            UnitArtillery u = (UnitArtillery) this;
+            return u.mob();
+        }
+        if (this instanceof UnitHQ) {
+            UnitHQ u = (UnitHQ) this;
+            return u.mob();
+        }
+        return -1;
     }
 
     public void drag(color c) {
@@ -154,14 +186,13 @@ abstract class Unit {
         }
     }
 
-    public ArrayList<Tile> BFSsearch(int range) {
+    public ArrayList<Tile> bfssearch(int range) {
         ArrayList<Tile> moveTargets = new ArrayList<Tile>();
         ArrayList<Tile> connections = new ArrayList<Tile>();
         Queue<Tile> q = new LinkedList<Tile>();
         Queue<Tile> nextq = new LinkedList<Tile>();
         q.add(location);
-
-        for (int i = 0; i < range; i++) {
+        for (int i = 0; i <= range; i++) {
             //each 'step' of BFS
             while (!q.isEmpty()) {
                 //each step of while adds the connections of each in q
@@ -174,11 +205,11 @@ abstract class Unit {
                 }
             }
             //has complete nextq of all adjacent to current q.
-            for (Tile t : nextq) {
+            while (!nextq.isEmpty()) {
                 q.add(nextq.remove());
             }
         }
-
+        moveTargets.remove(location);
         return moveTargets;
 
     }

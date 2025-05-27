@@ -70,4 +70,18 @@ class Tile {
     public Unit getUnitIn() {
         return unit;
     }
+
+    public void drawHighlightedTile() {
+        strokeWeight(camera.getZoom()/20);
+        stroke(25);
+        fill(100,100,0);
+        if (mouseOver()) {
+            fill(200,200,0);
+            mouseOver = true;
+        }
+        else {
+            mouseOver = false;
+        }
+        polygon(camera.getZoom()*center.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(center.y+Math.abs(center.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y),camera.getZoom()/2,6);
+    }
 }
