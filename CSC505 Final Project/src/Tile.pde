@@ -3,6 +3,7 @@ class Tile {
     private PVector center;
     private Unit unit;
     private boolean mouseOver;
+    private int height;
 
     public Tile(PVector position) {
         this.center = position.copy();
