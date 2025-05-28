@@ -78,11 +78,11 @@ class Menu {
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-2*UI_SIZE,height/2-170+UI_SIZE/2,width/2+2*UI_SIZE-5,height/2-170+2*UI_SIZE)) {
                     player1.setFaction(1);
-                    player1.setPlayerColor(color(40,0,30));
+                    player1.setPlayerColor(color(10,10,10));
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+2*UI_SIZE,height/2-170+UI_SIZE/2,width/2+6*UI_SIZE,height/2-170+2*UI_SIZE)) {
                     player1.setFaction(2);
-                    player1.setPlayerColor(color(40,40,0));
+                    player1.setPlayerColor(color(60,0,0));
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-6*UI_SIZE,height/2+70+UI_SIZE/2,width/2-2*UI_SIZE-5,height/2+70+2*UI_SIZE)) {
                     player2.setFaction(0);
@@ -90,11 +90,11 @@ class Menu {
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-2*UI_SIZE,height/2+70+UI_SIZE/2,width/2+2*UI_SIZE-5,height/2+70+2*UI_SIZE)) {
                     player2.setFaction(1);
-                    player2.setPlayerColor(color(10,10,10));
+                    player2.setPlayerColor(color(100,100,100));
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+2*UI_SIZE,height/2+70+UI_SIZE/2,width/2+6*UI_SIZE,height/2+70+2*UI_SIZE)) {
                     player2.setFaction(2);
-                    player2.setPlayerColor(color(150,150,150));
+                    player2.setPlayerColor(color(60,60,0));
                 }
                 if (InputReader.getInstance().getKeyDown('\n') && timeInMenu > 200) {
                     previousMenu = menuID;
