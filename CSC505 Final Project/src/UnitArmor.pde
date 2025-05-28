@@ -21,8 +21,8 @@ class UnitArmor extends Unit {
 
     public UnitArmor(int p) {
         cv = 4;
-        drm = 2;
-        hp = 10;
+        drm = 3;
+        hp = 12;
         mob = 5;
         range = 1;
         zoneOfControl = true;
@@ -55,8 +55,30 @@ class UnitArmor extends Unit {
         return range;
     }
 
+    @Override public int range(boolean retaliation) {
+        if (!retaliation && !super.canAttack()) {
+            return 0;
+        }
+        return range;
+    }
+
     @Override public int cv() {
         return cv;
+    }
+
+    @Override public int drm() {
+        return drm;
+    }
+
+    @Override public int hp() {
+        return hp;
+    }
+
+    @Override public void takeDamage(int dmg) {
+        cv -= dmg/hp;
+        if (cv < 1) {
+            unitDeath();
+        }
     }
 
 }

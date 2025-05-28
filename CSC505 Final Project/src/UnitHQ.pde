@@ -21,7 +21,7 @@ class UnitHQ extends Unit {
 
     public UnitHQ(int p) {
         cv = 4;
-        drm = -100;
+        drm = 0;
         hp = 10;
         mob = 0;
         range = 0;
@@ -55,7 +55,29 @@ class UnitHQ extends Unit {
         return range;
     }
 
+    @Override public int range(boolean retaliation) {
+        if (!retaliation && !super.canAttack()) {
+            return 0;
+        }
+        return range;
+    }
+
     @Override public int cv() {
         return cv;
+    }
+
+    @Override public int drm() {
+        return drm;
+    }
+
+    @Override public int hp() {
+        return hp;
+    }
+
+    @Override public void takeDamage(int dmg) {
+        cv -= dmg/hp;
+        if (cv < 1) {
+            unitDeath();
+        }
     }
 }

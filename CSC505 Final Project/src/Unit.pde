@@ -21,9 +21,21 @@ abstract class Unit {
     private color playerColor;
 
     public void takeDamage(int dmg) {
-        cv -= dmg/hp;
-        if (cv < 1) {
-            unitDeath();
+        if (this instanceof UnitInfantry) {
+            UnitInfantry u = (UnitInfantry) this;
+            u.takeDamage(dmg);
+        }
+        if (this instanceof UnitArmor) {
+            UnitArmor u = (UnitArmor) this;
+            u.takeDamage(dmg);
+        }
+        if (this instanceof UnitArtillery) {
+            UnitArtillery u = (UnitArtillery) this;
+            u.takeDamage(dmg);
+        }
+        if (this instanceof UnitHQ) {
+            UnitHQ u = (UnitHQ) this;
+            u.takeDamage(dmg);
         }
     }
 
@@ -49,6 +61,19 @@ abstract class Unit {
     }
 
     public void attack(Tile target) {
+        int damage = 0;
+        int retaliation = 0;
+        Unit targetUnit = target.getUnitIn();
+        for (int i = 0; i < cv(); i++) {
+            damage+=(int) (Math.random()*6)+1 + drm();
+        }
+        if (targetUnit.bfsattacksearch(targetUnit.range(true),true).contains(location)) {
+            for (int i = 0; i < targetUnit.cv(); i++) {
+                retaliation+=(int) (Math.random()*6)+1 + targetUnit.drm();
+            }
+        }
+        targetUnit.takeDamage(damage);
+        takeDamage(retaliation);
         canAttack = false;
         canMove = false;
     }
@@ -120,6 +145,46 @@ abstract class Unit {
         if (this instanceof UnitHQ) {
             UnitHQ u = (UnitHQ) this;
             return u.cv();
+        }
+        return -1;
+    }
+
+    public int drm() {
+        if (this instanceof UnitInfantry) {
+            UnitInfantry u = (UnitInfantry) this;
+            return u.drm();
+        }
+        if (this instanceof UnitArmor) {
+            UnitArmor u = (UnitArmor) this;
+            return u.drm();
+        }
+        if (this instanceof UnitArtillery) {
+            UnitArtillery u = (UnitArtillery) this;
+            return u.drm();
+        }
+        if (this instanceof UnitHQ) {
+            UnitHQ u = (UnitHQ) this;
+            return u.drm();
+        }
+        return -1;
+    }
+
+    public int hp() {
+        if (this instanceof UnitInfantry) {
+            UnitInfantry u = (UnitInfantry) this;
+            return u.hp();
+        }
+        if (this instanceof UnitArmor) {
+            UnitArmor u = (UnitArmor) this;
+            return u.hp();
+        }
+        if (this instanceof UnitArtillery) {
+            UnitArtillery u = (UnitArtillery) this;
+            return u.hp();
+        }
+        if (this instanceof UnitHQ) {
+            UnitHQ u = (UnitHQ) this;
+            return u.hp();
         }
         return -1;
     }
@@ -338,6 +403,18 @@ abstract class Unit {
             textSize(UI_SIZE);
             text("HQ",width/2-3*UI_SIZE,height-2.1*UI_SIZE);
         }
+        textAlign(LEFT);
+        fill(100);
+        textSize(20);
+        text("CV: " + cv(),width/2-2*UI_SIZE,height-2*UI_SIZE);
+        text("DRM: +" + drm(),width/2-2*UI_SIZE,height-1.5*UI_SIZE);
+        text("HP: " + hp(),width/2-2*UI_SIZE,height-UI_SIZE);
+        int lowBound = (1+drm())*cv()/u.hp();
+        int highBound = (6+drm())*cv()/u.hp();
+        text("ED: " + lowBound + " - " + highBound,width/2-2*UI_SIZE,height-0.5*UI_SIZE);
+        textAlign(CENTER);
+
+
         fill(u.playerColor(),192);
         rect(width/2,height-3*UI_SIZE,4*UI_SIZE,3*UI_SIZE);
         fill(u.playerColor(),255);
@@ -358,6 +435,69 @@ abstract class Unit {
             textSize(0.5*UI_SIZE);
             text("HQ",width/2+UI_SIZE,height-2*UI_SIZE);
         }
+        textAlign(LEFT);
+        fill(100);
+        textSize(20);
+        text("CV: " + u.cv(),width/2+2*UI_SIZE,height-2*UI_SIZE);
+        text("DRM: +" + u.drm(),width/2+2*UI_SIZE,height-1.5*UI_SIZE);
+        text("HP: " + u.hp(),width/2+2*UI_SIZE,height-UI_SIZE);
+        lowBound = (1+u.drm())*u.cv()/hp();
+        highBound = (6+u.drm())*u.cv()/hp();
+        text("ED: " + lowBound + " - " + highBound,width/2+2*UI_SIZE,height-0.5*UI_SIZE);
+        textAlign(CENTER);
+    }
+
+    public ArrayList<Tile> bfsattacksearch(int range, boolean retaliation) {
+        ArrayList<Tile> attackTargets = new ArrayList<Tile>();
+        ArrayList<Tile> connections = new ArrayList<Tile>();
+        Queue<Tile> q = new LinkedList<Tile>();
+        Queue<Tile> nextq = new LinkedList<Tile>();
+        q.add(location);
+        for (int i = 0; i <= range; i++) {
+            //each 'step' of BFS
+            while (!q.isEmpty()) {
+                //each step of while adds the connections of each in q
+                attackTargets.add(q.peek());
+                connections = map.getConnections(q.remove());
+                for (Tile t : connections) {
+                    if (!attackTargets.contains(t) && !nextq.contains(t) && !q.contains(t)) {
+                        nextq.add(t);
+                    }
+                }
+            }
+            //has complete nextq of all adjacent to current q.
+            while (!nextq.isEmpty()) {
+                q.add(nextq.remove());
+            }
+        }
+        attackTargets.remove(location);
+        ArrayList<Tile> finalTargets = new ArrayList<Tile>();
+        for (Tile t : attackTargets) {
+            if (!t.isEmpty()) {
+                finalTargets.add(t);
+            }
+        }
+        return finalTargets;
+    }
+
+    public int range(boolean retaliation) {
+        if (this instanceof UnitInfantry) {
+            UnitInfantry u = (UnitInfantry) this;
+            return u.range(retaliation);
+        }
+        if (this instanceof UnitArmor) {
+            UnitArmor u = (UnitArmor) this;
+            return u.range(retaliation);
+        }
+        if (this instanceof UnitArtillery) {
+            UnitArtillery u = (UnitArtillery) this;
+            return u.range(retaliation);
+        }
+        if (this instanceof UnitHQ) {
+            UnitHQ u = (UnitHQ) this;
+            return u.range(retaliation);
+        }
+        return -1;
     }
 
 }
