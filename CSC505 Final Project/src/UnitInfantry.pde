@@ -42,7 +42,7 @@ class UnitInfantry extends Unit {
                 mob = 2;
                 range = 1;
                 break;
-            case 1:
+            case 2:
                 drm = 1;
                 hp = 8;
                 mob = 2;

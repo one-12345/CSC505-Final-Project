@@ -42,7 +42,7 @@ class UnitArmor extends Unit {
                 mob = 4;
                 range = 1;
                 break;
-            case 1:
+            case 2:
                 drm = 3;
                 hp = 14;
                 mob = 4;

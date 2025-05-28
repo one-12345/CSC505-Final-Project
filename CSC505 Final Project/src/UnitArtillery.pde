@@ -42,7 +42,7 @@ class UnitArtillery extends Unit {
                 mob = 1;
                 range = 3;
                 break;
-            case 1:
+            case 2:
                 drm = 0;
                 hp = 6;
                 mob = 2;
