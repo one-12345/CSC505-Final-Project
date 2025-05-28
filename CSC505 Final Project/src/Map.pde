@@ -80,8 +80,11 @@ class Map {
                     }
                     for (Tile m : u.bfsattacksearch(range)) {
                         m.drawAttackTile();
-                        if (InputReader.getInstance().getMouseDown() && m.mouseOver()) {
-                            //u.attack(m);
+                        if (m.mouseOver()) {
+                            u.previewAttack(m.getUnitIn());
+                            if (InputReader.getInstance().getMouseDown()) {
+                                u.attack(m);
+                            }
                         }
                     }
                 }

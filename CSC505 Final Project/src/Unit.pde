@@ -11,6 +11,7 @@ abstract class Unit {
     private boolean recentlyDeployed; //If it is the first turn Unit is deployed
     private boolean isDragged;
     private boolean isSelected;
+    private boolean isHidden;
 
     private boolean canMove;
     private boolean canAttack;
@@ -40,6 +41,11 @@ abstract class Unit {
         canMove = true;
         canAttack = true;
         recentlyDeployed = false;
+    }
+
+    public void defresh() {
+        canMove = false;
+        canAttack = false;
     }
 
     public void attack(Tile target) {
@@ -92,6 +98,30 @@ abstract class Unit {
 
     public int player() {
         return player;
+    }
+
+    public color playerColor() {
+        return playerColor;
+    }
+
+    public int cv() {
+        if (this instanceof UnitInfantry) {
+            UnitInfantry u = (UnitInfantry) this;
+            return u.cv();
+        }
+        if (this instanceof UnitArmor) {
+            UnitArmor u = (UnitArmor) this;
+            return u.cv();
+        }
+        if (this instanceof UnitArtillery) {
+            UnitArtillery u = (UnitArtillery) this;
+            return u.cv();
+        }
+        if (this instanceof UnitHQ) {
+            UnitHQ u = (UnitHQ) this;
+            return u.cv();
+        }
+        return -1;
     }
 
     public int mob() {
@@ -176,7 +206,7 @@ abstract class Unit {
     public void drawUnit() {
         PVector v = location.getCenter();
         float size = 0.2*camera.getZoom();
-        strokeWeight(camera.getZoom()/20);
+        strokeWeight(0.25*size);
         color borderColor;
         if (canAttack && canMove) {
             borderColor = color(0,100,0);
@@ -201,21 +231,27 @@ abstract class Unit {
             fill(playerColor,255);
         }
         rect(camera.getZoom()*v.x+camera.getCameraPosition().x-size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-size,2*size,2*size);
-        if (this instanceof UnitInfantry) {
+        if (this instanceof UnitInfantry && !(isHidden && game.getTurn() % 2 != player % 2)) {
             line(camera.getZoom()*v.x+camera.getCameraPosition().x-size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-size,camera.getZoom()*v.x+camera.getCameraPosition().x+size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)+size);
             line(camera.getZoom()*v.x+camera.getCameraPosition().x+size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-size,camera.getZoom()*v.x+camera.getCameraPosition().x-size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)+size);
         }
-        if (this instanceof UnitArmor) {
+        if (this instanceof UnitArmor && !(isHidden && game.getTurn() % 2 != player % 2)) {
             rect(camera.getZoom()*v.x+camera.getCameraPosition().x-0.6*size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-0.4*size,1.2*size,0.8*size,0.4*size);
         }
-        if (this instanceof UnitArtillery) {
+        if (this instanceof UnitArtillery && !(isHidden && game.getTurn() % 2 != player % 2)) {
             fill(borderColor,255);
             circle(camera.getZoom()*v.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y),0.4*size);
         }
-        if (this instanceof UnitHQ) {
+        if (this instanceof UnitHQ && !(isHidden && game.getTurn() % 2 != player % 2)) {
             fill(borderColor,255);
             textSize(size);
             text("HQ",camera.getZoom()*v.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y));
+        }
+        stroke(borderColor);
+        fill(borderColor);
+        strokeWeight(0.1*size);
+        for (int i = 0; i < cv(); i++) {
+            triangle(camera.getZoom()*v.x+camera.getCameraPosition().x-(1-0.5*i)*size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-size,camera.getZoom()*v.x+camera.getCameraPosition().x-(0.5-0.5*i)*size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-size,camera.getZoom()*v.x+camera.getCameraPosition().x-(0.75-0.5*i)*size, (float) (camera.getZoom()*(v.y+Math.abs(v.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y)-(1+(float)Math.sqrt(3)/4)*size);
         }
     }
 
@@ -278,6 +314,50 @@ abstract class Unit {
             }
         }
         return finalTargets;
+    }
+
+    public void previewAttack(Unit u) {
+        stroke(100);
+        fill(playerColor,192);
+        strokeWeight(4);
+        rect(width/2-4*UI_SIZE,height-3*UI_SIZE,4*UI_SIZE,3*UI_SIZE);
+        fill(playerColor,255);
+        rect(width/2-3.5*UI_SIZE,height-2.5*UI_SIZE,UI_SIZE,UI_SIZE);
+        if (this instanceof UnitInfantry) {
+            line(width/2-3.5*UI_SIZE,height-2.5*UI_SIZE,width/2-2.5*UI_SIZE,height-1.5*UI_SIZE);
+            line(width/2-3.5*UI_SIZE,height-1.5*UI_SIZE,width/2-2.5*UI_SIZE,height-2.5*UI_SIZE);
+        }
+        if (this instanceof UnitArmor) {
+            rect(width/2-3.3*UI_SIZE,height-2.2*UI_SIZE,0.6*UI_SIZE,0.4*UI_SIZE,0.2*UI_SIZE);
+        }
+        if (this instanceof UnitArtillery) {
+            fill(100);
+            circle(width/2-3*UI_SIZE,height-2*UI_SIZE,0.2*UI_SIZE);
+        }
+        if (this instanceof UnitHQ) {
+            textSize(UI_SIZE);
+            text("HQ",width/2-3*UI_SIZE,height-2.1*UI_SIZE);
+        }
+        fill(u.playerColor(),192);
+        rect(width/2,height-3*UI_SIZE,4*UI_SIZE,3*UI_SIZE);
+        fill(u.playerColor(),255);
+        rect(width/2+0.5*UI_SIZE,height-2.5*UI_SIZE,UI_SIZE,UI_SIZE);
+        if (u instanceof UnitInfantry) {
+            line(width/2+0.5*UI_SIZE,height-2.5*UI_SIZE,width/2+1.5*UI_SIZE,height-1.5*UI_SIZE);
+            line(width/2+0.5*UI_SIZE,height-1.5*UI_SIZE,width/2+1.5*UI_SIZE,height-2.5*UI_SIZE);
+        }
+        if (u instanceof UnitArmor) {
+            rect(width/2+0.7*UI_SIZE,height-2.2*UI_SIZE,0.6*UI_SIZE,0.4*UI_SIZE,0.2*UI_SIZE);
+        }
+        if (u instanceof UnitArtillery) {
+            fill(100);
+            circle(width/2+UI_SIZE,height-2*UI_SIZE,0.2*UI_SIZE);
+        }
+        if (u instanceof UnitHQ) {
+            fill(100);
+            textSize(0.5*UI_SIZE);
+            text("HQ",width/2+UI_SIZE,height-2*UI_SIZE);
+        }
     }
 
 }

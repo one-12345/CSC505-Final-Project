@@ -180,6 +180,14 @@ class Player {
         }
     }
 
+    public void defreshUnits() {
+        for (Unit u : units) {
+            if (u.isDeployed()) {
+                u.defresh();
+            }
+        }
+    }
+
     public void removeUnit(Unit u) {
         units.remove(u);
     }

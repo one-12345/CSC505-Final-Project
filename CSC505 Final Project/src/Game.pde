@@ -113,10 +113,12 @@ class Game {
         turn++;
         if (turn % 2 == 1) {
             player1.refreshUnits();
+            player2.defreshUnits();
             player2.deselectAll();
         } 
         else {
             player2.refreshUnits();
+            player1.defreshUnits();
             player1.deselectAll();
         }
     }

@@ -11,6 +11,7 @@ class UnitInfantry extends Unit {
     private boolean recentlyDeployed; //If it is the first turn Unit is deployed
     private boolean isDragged;
     private boolean isSelected;
+    private boolean isHidden;
 
     private boolean canMove;
     private boolean canAttack;
@@ -33,6 +34,7 @@ class UnitInfantry extends Unit {
         canMove = false;
         canAttack = false;
         player = p;
+        isHidden = true;
     }
 
     @Override public int player() {
@@ -51,5 +53,9 @@ class UnitInfantry extends Unit {
             return 0;
         }
         return range;
+    }
+
+    @Override public int cv() {
+        return cv;
     }
 }
