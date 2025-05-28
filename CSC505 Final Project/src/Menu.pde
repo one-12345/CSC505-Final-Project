@@ -90,7 +90,7 @@ class Menu {
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-2*UI_SIZE,height/2+70+UI_SIZE/2,width/2+2*UI_SIZE-5,height/2+70+2*UI_SIZE)) {
                     player2.setFaction(1);
-                    player2.setPlayerColor(color(100,100,100));
+                    player2.setPlayerColor(color(40,0,40));
                 }
                 if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+2*UI_SIZE,height/2+70+UI_SIZE/2,width/2+6*UI_SIZE,height/2+70+2*UI_SIZE)) {
                     player2.setFaction(2);

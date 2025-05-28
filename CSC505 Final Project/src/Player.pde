@@ -18,7 +18,7 @@ class Player {
                 for (int i = 0; i < 8; i++) {
                     units.add(new UnitInfantry(playerID,0));
                 }
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 4; i++) {
                     units.add(new UnitArmor(playerID,0));
                 }
                 for (int i = 0; i < 2; i++) {

@@ -18,7 +18,9 @@ class Map {
                 generationVector.y = y;
                 generationTile.setCenter(generationVector);
                 temp = generationTile.copy();
-                tileMap.put(temp, null);
+                if (Math.random() > 0.15) {
+                    tileMap.put(temp, null);
+                }
             }
         }
         for (int y = size; y < size*2; y++) {
@@ -27,7 +29,9 @@ class Map {
                 generationVector.y = y;
                 generationTile.setCenter(generationVector);
                 temp = generationTile.copy();
-                tileMap.put(temp, null);
+                if (Math.random() > 0.15) {
+                    tileMap.put(temp, null);
+                }
             }
         }
         for (Tile t : tileMap.keySet()) {
