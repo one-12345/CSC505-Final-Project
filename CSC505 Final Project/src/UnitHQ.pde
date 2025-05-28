@@ -11,7 +11,6 @@ class UnitHQ extends Unit {
     private boolean recentlyDeployed; //If it is the first turn Unit is deployed
     private boolean isDragged;
     private boolean isSelected;
-    private boolean isHidden;
 
     private boolean canMove;
     private boolean canAttack;
@@ -19,7 +18,7 @@ class UnitHQ extends Unit {
 
     private int player;
 
-    public UnitHQ(int p) {
+    public UnitHQ(int p, int f) {
         cv = 4;
         drm = 0;
         hp = 10;
@@ -34,7 +33,6 @@ class UnitHQ extends Unit {
         canMove = false;
         canAttack = false;
         player = p;
-        isHidden = true;
     }
 
     @Override public int player() {

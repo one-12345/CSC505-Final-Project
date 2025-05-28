@@ -11,7 +11,6 @@ class UnitArtillery extends Unit {
     private boolean recentlyDeployed; //If it is the first turn Unit is deployed
     private boolean isDragged;
     private boolean isSelected;
-    private boolean isHidden;
 
     private boolean canMove;
     private boolean canAttack;
@@ -19,12 +18,8 @@ class UnitArtillery extends Unit {
 
     private int player;
 
-    public UnitArtillery(int p) {
+    public UnitArtillery(int p, int f) {
         cv = 4;
-        drm = 0;
-        hp = 6;
-        mob = 1;
-        range = 3;
         zoneOfControl = false;
         isDeployed = false;
         recentlyDeployed = false;
@@ -34,7 +29,26 @@ class UnitArtillery extends Unit {
         canMove = false;
         canAttack = false;
         player = p;
-        isHidden = true;
+        switch (f) {
+            case 0:
+                drm = 0;
+                hp = 6;
+                mob = 1;
+                range = 4;
+                break;
+            case 1:
+                drm = 0;
+                hp = 6;
+                mob = 1;
+                range = 3;
+                break;
+            case 1:
+                drm = 0;
+                hp = 6;
+                mob = 2;
+                range = 4;
+                break;
+        }
     }
 
     @Override public int player() {

@@ -16,39 +16,39 @@ class Player {
         switch (faction) {
             case 0:
                 for (int i = 0; i < 8; i++) {
-                    units.add(new UnitInfantry(playerID));
+                    units.add(new UnitInfantry(playerID,0));
+                }
+                for (int i = 0; i < 3; i++) {
+                    units.add(new UnitArmor(playerID,0));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArmor(playerID));
+                    units.add(new UnitArtillery(playerID,0));
                 }
-                for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArtillery(playerID));
-                }
-                units.add(new UnitHQ(playerID));
+                units.add(new UnitHQ(playerID,0));
                 break;
             case 1:
                 for (int i = 0; i < 8; i++) {
-                    units.add(new UnitInfantry(playerID));
+                    units.add(new UnitInfantry(playerID,1));
+                }
+                for (int i = 0; i < 3; i++) {
+                    units.add(new UnitArmor(playerID,1));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArmor(playerID));
+                    units.add(new UnitArtillery(playerID,1));
                 }
-                for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArtillery(playerID));
-                }
-                units.add(new UnitHQ(playerID));
+                units.add(new UnitHQ(playerID,1));
                 break;
             case 2:
-                for (int i = 0; i < 8; i++) {
-                    units.add(new UnitInfantry(playerID));
+                for (int i = 0; i < 10; i++) {
+                    units.add(new UnitInfantry(playerID,2));
+                }
+                for (int i = 0; i < 3; i++) {
+                    units.add(new UnitArmor(playerID,2));
                 }
                 for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArmor(playerID));
+                    units.add(new UnitArtillery(playerID,2));
                 }
-                for (int i = 0; i < 2; i++) {
-                    units.add(new UnitArtillery(playerID));
-                }
-                units.add(new UnitHQ(playerID));
+                units.add(new UnitHQ(playerID,2));
                 break;
         }
     }

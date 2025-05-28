@@ -11,7 +11,6 @@ class UnitArmor extends Unit {
     private boolean recentlyDeployed; //If it is the first turn Unit is deployed
     private boolean isDragged;
     private boolean isSelected;
-    private boolean isHidden;
 
     private boolean canMove;
     private boolean canAttack;
@@ -19,12 +18,8 @@ class UnitArmor extends Unit {
 
     private int player;
 
-    public UnitArmor(int p) {
+    public UnitArmor(int p, int f) {
         cv = 4;
-        drm = 3;
-        hp = 12;
-        mob = 5;
-        range = 1;
         zoneOfControl = true;
         isDeployed = false;
         recentlyDeployed = false;
@@ -34,7 +29,26 @@ class UnitArmor extends Unit {
         canMove = false;
         canAttack = false;
         player = p;
-        isHidden = true;
+        switch (f) {
+            case 0:
+                drm = 3;
+                hp = 12;
+                mob = 5;
+                range = 1;
+                break;
+            case 1:
+                drm = 4;
+                hp = 14;
+                mob = 4;
+                range = 1;
+                break;
+            case 1:
+                drm = 3;
+                hp = 14;
+                mob = 4;
+                range = 1;
+                break;
+        }
     }
 
     @Override public int player() {

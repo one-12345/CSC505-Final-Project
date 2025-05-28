@@ -347,12 +347,12 @@ class Menu {
         text("PLAYER 1", width/2-3*UI_SIZE, height/2-120-0.5*UI_SIZE);
         text("PLAYER 2", width/2-3*UI_SIZE, height/2+120-0.5*UI_SIZE);
         textSize(32);
-        text("TERRAN", width/2-4*UI_SIZE, height/2-120+1.5*UI_SIZE);
-        text("TERRAN", width/2-4*UI_SIZE, height/2+120+1.5*UI_SIZE);
-        text("XENO", width/2, height/2-120+1.5*UI_SIZE);
-        text("XENO", width/2, height/2+120+1.5*UI_SIZE);
-        text("MECH", width/2+4*UI_SIZE, height/2-120+1.5*UI_SIZE);
-        text("MECH", width/2+4*UI_SIZE, height/2+120+1.5*UI_SIZE);
+        text("REPUBLIC", width/2-4*UI_SIZE, height/2-120+1.5*UI_SIZE);
+        text("REPUBLIC", width/2-4*UI_SIZE, height/2+120+1.5*UI_SIZE);
+        text("EMPIRE", width/2, height/2-120+1.5*UI_SIZE);
+        text("EMPIRE", width/2, height/2+120+1.5*UI_SIZE);
+        text("UNION", width/2+4*UI_SIZE, height/2-120+1.5*UI_SIZE);
+        text("UNION", width/2+4*UI_SIZE, height/2+120+1.5*UI_SIZE);
 
         if (timeInMenu/100%10>2) {
             text("PRESS 'ENTER' TO START", width/2, height/2+220+1.5*UI_SIZE);
