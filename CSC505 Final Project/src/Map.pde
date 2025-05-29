@@ -47,6 +47,7 @@ class Map {
                 int cnt = 0;
                 for(Tile k : getConnections(t)){
                     toth+=k.getHeight();
+                    cnt++;
                 }
                 toth+=t.getHeight();
                 nexth.add(toth/(cnt+1));
