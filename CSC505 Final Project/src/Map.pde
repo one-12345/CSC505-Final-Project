@@ -18,9 +18,7 @@ class Map {
                 generationVector.y = y;
                 generationTile.setCenter(generationVector);
                 temp = generationTile.copy();
-                if (Math.random() > 0.15) {
                     tileMap.put(temp, null);
-                }
             }
         }
         for (int y = size; y < size*2; y++) {
@@ -29,15 +27,38 @@ class Map {
                 generationVector.y = y;
                 generationTile.setCenter(generationVector);
                 temp = generationTile.copy();
-                if (Math.random() > 0.15) {
                     tileMap.put(temp, null);
-                }
             }
         }
         for (Tile t : tileMap.keySet()) {
             this.generateAdjacencies(t);
         }
         //Write Diamond Square Terrain Algorithm here
+        for (Tile t : tileMap.keySet()) {
+            if(Math.random()<0.02){
+                t.setHeight(40);
+            }
+        }
+        ArrayList<Integer> nexth = new ArrayList<Integer>();
+        for(int i=0;i<4;i++){
+            int ind = 0;
+            for(Tile t : tileMap.keySet()){
+                int toth = 0;
+                int cnt = 0;
+                for(Tile k : getConnections(t)){
+                    toth+=k.getHeight();
+                }
+                toth+=t.getHeight();
+                nexth.add(toth/(cnt+1));
+            }
+            int ind2 = 0;
+            for(Tile t : tileMap.keySet()){
+                t.setHeight(nexth.get(ind2));
+                ind2++;
+            }
+            nexth.clear();
+        }
+
     }
 
     public void mapSquareRender() {

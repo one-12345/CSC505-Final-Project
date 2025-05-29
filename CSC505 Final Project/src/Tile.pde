@@ -8,6 +8,13 @@ class Tile {
     public Tile(PVector position) {
         this.center = position.copy();
         unit = null;
+        height = 0;
+    }
+    public int getHeight(){
+        return this.height;
+    }
+    public void setHeight(int num){
+        this.height = num;
     }
 
     public PVector getCenter() {
