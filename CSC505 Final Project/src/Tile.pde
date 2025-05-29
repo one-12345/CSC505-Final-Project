@@ -40,6 +40,9 @@ class Tile {
         if (unit != null) {
             unit.drawUnit();
         }
+        fill(100);
+        textSize(camera.getZoom()/2);
+        text("H: " + height,camera.getZoom()*center.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(center.y+Math.abs(center.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y));
     }
 
     public Tile copy() {
