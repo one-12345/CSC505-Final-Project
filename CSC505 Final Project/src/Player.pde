@@ -18,7 +18,7 @@ class Player {
                 for (int i = 0; i < 8; i++) {
                     units.add(new UnitInfantry(playerID,0));
                 }
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 3; i++) {
                     units.add(new UnitArmor(playerID,0));
                 }
                 for (int i = 0; i < 2; i++) {
@@ -30,7 +30,7 @@ class Player {
                 for (int i = 0; i < 8; i++) {
                     units.add(new UnitInfantry(playerID,1));
                 }
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 2; i++) {
                     units.add(new UnitArmor(playerID,1));
                 }
                 for (int i = 0; i < 2; i++) {
@@ -42,7 +42,7 @@ class Player {
                 for (int i = 0; i < 10; i++) {
                     units.add(new UnitInfantry(playerID,2));
                 }
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 2; i++) {
                     units.add(new UnitArmor(playerID,2));
                 }
                 for (int i = 0; i < 2; i++) {
