@@ -35,8 +35,8 @@ class Map {
         }
         //Write Diamond Square Terrain Algorithm here
         for (Tile t : tileMap.keySet()) {
-            if(Math.random()<0.03){
-                t.setHeight(40);
+            if(Math.random()<0.05){
+                t.setHeight(30+20*Math.random());
             }
         }
         ArrayList<Double> nexth = new ArrayList<Double>();
@@ -44,13 +44,11 @@ class Map {
             int ind = 0;
             for(Tile t : tileMap.keySet()){
                 double toth = 0;
-                int cnt = 0;
                 for(Tile k : getConnections(t)){
                     toth+=k.getHeight();
-                    cnt++;
                 }
                 toth+=t.getHeight();
-                nexth.add(toth/(cnt+1)+(Math.random()/2)-0.25);
+                nexth.add(toth/(7)+(Math.random()/2)-0.25);
             }
             int ind2 = 0;
             for(Tile t : tileMap.keySet()){

@@ -41,10 +41,10 @@ abstract class Unit {
 
     public void unitDeath() {
         location.empty();
-        if (player == 1) {
+        if (player() == 1) {
             player1.removeUnit(this);
         }
-        if (player == 2) {
+        if (player() == 2) {
             player2.removeUnit(this);
         }
     }
@@ -392,6 +392,7 @@ abstract class Unit {
         }
         switch (player()) {
             case 1:
+                System.out.println(player1.hasHQ());
                 if (!player1.hasHQ()) {
                     drmModifiers[0]--;
                 }
