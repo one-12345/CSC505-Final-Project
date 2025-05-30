@@ -3,17 +3,17 @@ class Tile {
     private PVector center;
     private Unit unit;
     private boolean mouseOver;
-    private int height;
+    private double height;
 
     public Tile(PVector position) {
         this.center = position.copy();
         unit = null;
         height = 0;
     }
-    public int getHeight(){
+    public double getHeight(){
         return this.height;
     }
-    public void setHeight(int num){
+    public void setHeight(double num){
         this.height = num;
     }
 
@@ -28,7 +28,7 @@ class Tile {
     public void drawTile() {
         strokeWeight(camera.getZoom()/20);
         stroke(25);
-        fill(50);
+        fill(20*(int)height,0,0);
         if (mouseOver()) {
             fill(200);
             mouseOver = true;
@@ -40,9 +40,11 @@ class Tile {
         if (unit != null) {
             unit.drawUnit();
         }
-        fill(100);
-        textSize(camera.getZoom()/2);
-        text("H: " + height,camera.getZoom()*center.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(center.y+Math.abs(center.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y));
+        if (map.mouseOver(this)) {
+            fill(100);
+            textSize(camera.getZoom()/2);
+            text("H: " + (int)height,camera.getZoom()*center.x+camera.getCameraPosition().x, (float) (camera.getZoom()*(center.y+Math.abs(center.x/2))*2/Math.sqrt(3)+camera.getCameraPosition().y));
+        }
     }
 
     public Tile copy() {
