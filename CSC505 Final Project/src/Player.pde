@@ -202,4 +202,13 @@ class Player {
         return playerID;
     }
 
+    public boolean hasHQ() {
+        for (Unit u : units) {
+            if (u instanceof UnitHQ && u.isDeployed()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

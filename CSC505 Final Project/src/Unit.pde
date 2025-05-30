@@ -60,16 +60,16 @@ abstract class Unit {
         canAttack = false;
     }
 
-    public void attack(Tile target) {
+    public void attack(Tile target, int[] drmModifiers) {
         int damage = 0;
         int retaliation = 0;
         Unit targetUnit = target.getUnitIn();
         for (int i = 0; i < cv(); i++) {
-            damage+=(int) (Math.random()*6)+1 + drm();
+            damage+=(int) (Math.random()*6)+1 + drm() + drmModifiers[0];
         }
         if (targetUnit.bfsattacksearch(targetUnit.range(true),true).contains(location)) {
             for (int i = 0; i < targetUnit.cv(); i++) {
-                retaliation+=(int) (Math.random()*6)+1 + targetUnit.drm();
+                retaliation+=(int) (Math.random()*6)+1 + targetUnit.drm() + drmModifiers[1];
             }
         }
         targetUnit.takeDamage(damage);
@@ -147,6 +147,10 @@ abstract class Unit {
             return u.cv();
         }
         return -1;
+    }
+
+    public Tile location() {
+        return location;
     }
 
     public int drm() {
@@ -381,7 +385,29 @@ abstract class Unit {
         return finalTargets;
     }
 
-    public void previewAttack(Unit u) {
+    public int[] previewAttack(Unit u) {
+        int[] drmModifiers = {0,0};
+        if (location.getHeight() < u.location().getHeight()) {
+            drmModifiers[0]--;
+        }
+        switch (player()) {
+            case 1:
+                if (!player1.hasHQ()) {
+                    drmModifiers[0]--;
+                }
+                if (!player2.hasHQ()) {
+                    drmModifiers[1]--;
+                }
+                break;
+            case 2:
+                if (!player2.hasHQ()) {
+                    drmModifiers[0]--;
+                }
+                if (!player1.hasHQ()) {
+                    drmModifiers[1]--;
+                }
+                break;
+        }
         stroke(100);
         fill(playerColor,192);
         strokeWeight(4);
@@ -407,7 +433,7 @@ abstract class Unit {
         fill(100);
         textSize(20);
         text("CV: " + cv(),width/2-2*UI_SIZE,height-2*UI_SIZE);
-        text("DRM: +" + drm(),width/2-2*UI_SIZE,height-1.5*UI_SIZE);
+        text("DRM: +" + drm() + "(" + drmModifiers[0] + ")",width/2-2*UI_SIZE,height-1.5*UI_SIZE);
         text("HP: " + hp(),width/2-2*UI_SIZE,height-UI_SIZE);
         int lowBound = (1+drm())*cv()/u.hp();
         int highBound = (6+drm())*cv()/u.hp();
@@ -439,12 +465,13 @@ abstract class Unit {
         fill(100);
         textSize(20);
         text("CV: " + u.cv(),width/2+2*UI_SIZE,height-2*UI_SIZE);
-        text("DRM: +" + u.drm(),width/2+2*UI_SIZE,height-1.5*UI_SIZE);
+        text("DRM: +" + u.drm() + "(" + drmModifiers[1] + ")",width/2+2*UI_SIZE,height-1.5*UI_SIZE);
         text("HP: " + u.hp(),width/2+2*UI_SIZE,height-UI_SIZE);
         lowBound = (1+u.drm())*u.cv()/hp();
         highBound = (6+u.drm())*u.cv()/hp();
         text("ED: " + lowBound + " - " + highBound,width/2+2*UI_SIZE,height-0.5*UI_SIZE);
         textAlign(CENTER);
+        return drmModifiers;
     }
 
     public ArrayList<Tile> bfsattacksearch(int range, boolean retaliation) {

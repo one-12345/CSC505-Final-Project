@@ -35,7 +35,7 @@ class Map {
         }
         //Write Diamond Square Terrain Algorithm here
         for (Tile t : tileMap.keySet()) {
-            if(Math.random()<0.02){
+            if(Math.random()<0.03){
                 t.setHeight(40);
             }
         }
@@ -58,6 +58,9 @@ class Map {
                 ind2++;
             }
             nexth.clear();
+        }
+        for (Tile t : tileMap.keySet()) {
+            t.setHeight((int) t.getHeight());
         }
 
     }
@@ -103,9 +106,9 @@ class Map {
                     for (Tile m : u.bfsattacksearch(range)) {
                         m.drawAttackTile();
                         if (m.mouseOver()) {
-                            u.previewAttack(m.getUnitIn());
+                            int[] drmModifiers = u.previewAttack(m.getUnitIn());
                             if (InputReader.getInstance().getMouseDown()) {
-                                u.attack(m);
+                                u.attack(m, drmModifiers);
                             }
                         }
                     }
