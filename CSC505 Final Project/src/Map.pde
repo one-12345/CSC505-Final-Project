@@ -39,11 +39,11 @@ class Map {
                 t.setHeight(40);
             }
         }
-        ArrayList<Integer> nexth = new ArrayList<Integer>();
-        for(int i=0;i<4;i++){
+        ArrayList<Double> nexth = new ArrayList<Double>();
+        for(int i=0;i<6;i++){
             int ind = 0;
             for(Tile t : tileMap.keySet()){
-                int toth = 0;
+                double toth = 0;
                 int cnt = 0;
                 for(Tile k : getConnections(t)){
                     toth+=k.getHeight();
