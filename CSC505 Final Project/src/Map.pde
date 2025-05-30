@@ -50,7 +50,7 @@ class Map {
                     cnt++;
                 }
                 toth+=t.getHeight();
-                nexth.add(toth/(cnt+1));
+                nexth.add(toth/(cnt+1)+(Math.random()/2)-0.25);
             }
             int ind2 = 0;
             for(Tile t : tileMap.keySet()){
