@@ -246,26 +246,29 @@ class Menu {
 
                 background(25,25,25);
                 strokeWeight(6);
+                stroke(100);
+                fill(100);
                 textSize(100);
                 textAlign(CENTER);
-                text("PLAYER " + winner + " WINS!", 0, -150+4*UI_SIZE/5);
+                text("PLAYER " + winner + " WINS!", width/2, height/2-150+4*UI_SIZE/5);
                 
                 //buttons
                 stroke(50);
                 fill(50);
-                rect(width/2-1.5*UI_SIZE, height/2+0.5*UI_SIZE, 2*UI_SIZE, UI_SIZE,UI_SIZE/5);
-                rect(width/2+0.5*UI_SIZE, height/2+0.5*UI_SIZE, 2*UI_SIZE, UI_SIZE,UI_SIZE/5);
+                rect(width/2-4.5*UI_SIZE, height/2+0.5*UI_SIZE, 3*UI_SIZE, UI_SIZE,UI_SIZE/5);
+                rect(width/2+1.5*UI_SIZE, height/2+0.5*UI_SIZE, 3*UI_SIZE, UI_SIZE,UI_SIZE/5);
                 fill(100);
                 stroke(100);
                 textSize(25);
-                text("MAIN MENU", width/2-UI_SIZE, height/2+0.4*UI_SIZE);
-                text("QUIT", width/2+UI_SIZE, height/2+0.4*UI_SIZE);
-                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-1.5*UI_SIZE, height/2+0.5*UI_SIZE,width/2-0.5*UI_SIZE, height/2+1.5*UI_SIZE)) {
+                textAlign(CENTER);
+                text("MAIN MENU", width/2-3*UI_SIZE, height/2+1.2*UI_SIZE);
+                text("QUIT", width/2+3*UI_SIZE, height/2+1.2*UI_SIZE);
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-4.5*UI_SIZE, height/2+0.5*UI_SIZE,width/2-1.5*UI_SIZE, height/+0.5*UI_SIZE)) {
                     previousMenu = menuID;
                     menuID = 0;
                     timeInMenu = 0;
                 }
-                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+0.5*UI_SIZE, height/2+0.5*UI_SIZE,width/2+1.5*UI_SIZE, height/2+1.5*UI_SIZE)) {
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+1.5*UI_SIZE, height/2+0.5*UI_SIZE,width/2+4.5*UI_SIZE, height/2+0.5*UI_SIZE)) {
                     exit();
                 }
                 break;

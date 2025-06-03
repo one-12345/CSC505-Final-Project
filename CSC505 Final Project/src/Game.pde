@@ -145,11 +145,12 @@ class Game {
             return player1.getFaction();
         }
         if(turn>30){
+            System.out.println("a");
             if(player1.playerStrength()>player2.playerStrength()){
-                return player1.getFaction();
+                return 1;
             }
             if(player1.playerStrength()<player2.playerStrength()){
-                return player2.getFaction();
+                return 2;
             }
         }
         return -1;
