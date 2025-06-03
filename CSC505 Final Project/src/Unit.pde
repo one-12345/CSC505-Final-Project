@@ -41,10 +41,10 @@ abstract class Unit {
 
     public void unitDeath() {
         location.empty();
-        if (player == 1) {
+        if (player() == 1) {
             player1.removeUnit(this);
         }
-        if (player == 2) {
+        if (player() == 2) {
             player2.removeUnit(this);
         }
     }
@@ -392,6 +392,7 @@ abstract class Unit {
         }
         switch (player()) {
             case 1:
+                System.out.println(player1.hasHQ());
                 if (!player1.hasHQ()) {
                     drmModifiers[0]--;
                 }
@@ -433,7 +434,7 @@ abstract class Unit {
         fill(100);
         textSize(20);
         text("CV: " + cv(),width/2-2*UI_SIZE,height-2*UI_SIZE);
-        text("DRM: +" + drm() + "(" + drmModifiers[0] + ")",width/2-2*UI_SIZE,height-1.5*UI_SIZE);
+        text("DRM: " + (drm()+drmModifiers[0]) + "(" + drmModifiers[0] + ")",width/2-2*UI_SIZE,height-1.5*UI_SIZE);
         text("HP: " + hp(),width/2-2*UI_SIZE,height-UI_SIZE);
         int lowBound = (1+drm())*cv()/u.hp();
         int highBound = (6+drm())*cv()/u.hp();
@@ -465,7 +466,7 @@ abstract class Unit {
         fill(100);
         textSize(20);
         text("CV: " + u.cv(),width/2+2*UI_SIZE,height-2*UI_SIZE);
-        text("DRM: +" + u.drm() + "(" + drmModifiers[1] + ")",width/2+2*UI_SIZE,height-1.5*UI_SIZE);
+        text("DRM: " + (u.drm()+drmModifiers[1]) + "(" + drmModifiers[1] + ")",width/2+2*UI_SIZE,height-1.5*UI_SIZE);
         text("HP: " + u.hp(),width/2+2*UI_SIZE,height-UI_SIZE);
         lowBound = (1+u.drm())*u.cv()/hp();
         highBound = (6+u.drm())*u.cv()/hp();
