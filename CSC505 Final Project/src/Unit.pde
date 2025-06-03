@@ -528,4 +528,24 @@ abstract class Unit {
         return -1;
     }
 
+        public int realRange() {
+        if (this instanceof UnitInfantry) {
+            UnitInfantry u = (UnitInfantry) this;
+            return u.realRange();
+        }
+        if (this instanceof UnitArmor) {
+            UnitArmor u = (UnitArmor) this;
+            return u.realRange();
+        }
+        if (this instanceof UnitArtillery) {
+            UnitArtillery u = (UnitArtillery) this;
+            return u.realRange();
+        }
+        if (this instanceof UnitHQ) {
+            UnitHQ u = (UnitHQ) this;
+            return u.realRange();
+        }
+        return -1;
+    }
+
 }

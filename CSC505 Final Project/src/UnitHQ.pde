@@ -78,4 +78,8 @@ class UnitHQ extends Unit {
             unitDeath();
         }
     }
+
+    @Override public int realRange() {
+        return range;
+    }
 }

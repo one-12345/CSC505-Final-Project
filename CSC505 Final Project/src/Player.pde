@@ -216,10 +216,10 @@ class Player {
         for (Unit u : units) {
             if(u.isDeployed()){
                 if (hasHQ()) {
-                    strength+=(int) (u.drm()+3.5)*u.cv()*u.hp()*u.range()/10;
+                    strength+=(int) (u.drm()+3.5)*u.cv()*u.hp()*u.realRange()/10;
                 }
                 else {
-                    strength+=(int) (u.drm()+2.5)*u.cv()*u.hp()*u.range()/10;
+                    strength+=(int) (u.drm()+2.5)*u.cv()*u.hp()*u.realRange()/10;
                 }
             }
         }

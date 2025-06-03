@@ -94,4 +94,8 @@ class UnitInfantry extends Unit {
             unitDeath();
         }
     }
+
+    @Override public int realRange() {
+        return range;
+    }
 }

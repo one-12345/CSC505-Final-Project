@@ -22,6 +22,7 @@ class Game {
                 return;
         }
         textSize(32);
+        drawStrengthComparison();
         if (turn % 2 == 1) {
             stroke(player1.getPlayerColor(),191);
             fill(player1.getPlayerColor(),127);
@@ -152,5 +153,43 @@ class Game {
             }
         }
         return -1;
+    }
+
+    private void drawStrengthComparison() {
+        int p1strength = player1.playerStrength();
+        int p2strength = player2.playerStrength();
+        int sum = p1strength + p2strength;
+        color c = player1.getPlayerColor();
+        strokeWeight(8);
+        if (p1strength != 0 && p2strength != 0) {
+            //normal bar
+            stroke(100);
+            fill(c,127);
+            rect(width/2-4*UI_SIZE,0.5*UI_SIZE,8*UI_SIZE*((float)p1strength/(float)sum),0.5*UI_SIZE);
+            c = player2.getPlayerColor();
+            fill(c,127);
+            rect(width/2-4*UI_SIZE+8*UI_SIZE*((float)p1strength/(float)sum),0.5*UI_SIZE,8*UI_SIZE*((float)p2strength/(float)sum),0.5*UI_SIZE);
+        }
+        else if (sum != 0) {
+            if (p1strength != 0) {
+                //full p1 bar
+                stroke(100);
+                fill(c,127);
+                rect(width/2-4*UI_SIZE,0.5*UI_SIZE,8*UI_SIZE,0.5*UI_SIZE);
+            }
+            else {
+                //full p2 bar
+                c = player2.getPlayerColor();
+                stroke(100);
+                fill(c,127);
+                rect(width/2-4*UI_SIZE,0.5*UI_SIZE,8*UI_SIZE,0.5*UI_SIZE);
+            }
+        }
+        else {
+            //setup bar
+            stroke(100);
+            fill(100,127);
+            rect(width/2-4*UI_SIZE,0.5*UI_SIZE,8*UI_SIZE,0.5*UI_SIZE);
+        }
     }
 }

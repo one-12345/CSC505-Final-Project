@@ -95,4 +95,8 @@ class UnitArmor extends Unit {
         }
     }
 
+    @Override public int realRange() {
+        return range;
+    }
+
 }
