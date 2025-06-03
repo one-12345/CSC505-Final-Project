@@ -127,4 +127,15 @@ class Game {
         return turn;
     }
 
+    public int finalwin(){
+        if(turn==31&&!(player1.playerLost()||player2.playerLost())){
+            if(player1.playerStrength()>player2.playerStrength()){
+                return player1.getFaction();
+            }
+            if(player1.playerStrength()<player2.playerStrength()){
+                return player2.getFaction();
+            }
+        }
+        return -1;
+    }
 }
