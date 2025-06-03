@@ -215,17 +215,19 @@ class Player {
         double strength=0;
         for (Unit u : units) {
             if(u.isDeployed()){
-                strength+=(u.drm()+3.5)*u.cv()*(u.mob()+u.range());
+                if (hasHQ()) {
+                    strength+=(int) (u.drm()+3.5)*u.cv()*u.hp()*u.range()/10;
+                }
+                else {
+                    strength+=(int) (u.drm()+2.5)*u.cv()*u.hp()*u.range()/10;
+                }
             }
-        }
-        if(!this.hasHQ()){
-            strength=strength/2;
         }
         return (int) strength;
     } 
 
     public boolean playerLost(){
-        if(this.playerStrength()==0){
+        if(units.isEmpty()){
             return true;
         }
         return false;

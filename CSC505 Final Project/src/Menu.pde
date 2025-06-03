@@ -4,6 +4,7 @@ class Menu {
     private int timeInMenu = 0;
     private int previousMenu = 0;
     private boolean b;
+    private int winner;
 
     public Menu(int menuID) {
         this.menuID = menuID;
@@ -239,7 +240,37 @@ class Menu {
                 }
 
                 break;
+            case 5:
+
+                //win screen
+
+                background(25,25,25);
+                strokeWeight(6);
+                textSize(100);
+                textAlign(CENTER);
+                text("PLAYER " + winner + " WINS!", 0, -150+4*UI_SIZE/5);
+                
+                //buttons
+                stroke(50);
+                fill(50);
+                rect(width/2-1.5*UI_SIZE, height/2+0.5*UI_SIZE, 2*UI_SIZE, UI_SIZE,UI_SIZE/5);
+                rect(width/2+0.5*UI_SIZE, height/2+0.5*UI_SIZE, 2*UI_SIZE, UI_SIZE,UI_SIZE/5);
+                fill(100);
+                stroke(100);
+                textSize(25);
+                text("MAIN MENU", width/2-UI_SIZE, height/2+0.4*UI_SIZE);
+                text("QUIT", width/2+UI_SIZE, height/2+0.4*UI_SIZE);
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2-1.5*UI_SIZE, height/2+0.5*UI_SIZE,width/2-0.5*UI_SIZE, height/2+1.5*UI_SIZE)) {
+                    previousMenu = menuID;
+                    menuID = 0;
+                    timeInMenu = 0;
+                }
+                if (InputReader.getInstance().getMouseDown() && mouseIn(width/2+0.5*UI_SIZE, height/2+0.5*UI_SIZE,width/2+1.5*UI_SIZE, height/2+1.5*UI_SIZE)) {
+                    exit();
+                }
+                break;
         }
+
     }
     public void drawMainMenu() {
         textAlign(CENTER);
@@ -357,5 +388,10 @@ class Menu {
         if (timeInMenu/100%10>2) {
             text("PRESS 'ENTER' TO START", width/2, height/2+220+1.5*UI_SIZE);
         }
+    }
+
+    public void win(int player) {
+        winner = player;
+        menuID = 5;
     }
 } 

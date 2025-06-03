@@ -12,6 +12,15 @@ class Game {
     }
 
     public void updateGame() {
+        int win = checkWin();
+        switch (win) {
+            case 1:
+                menu.win(1);
+                return;
+            case 2:
+                menu.win(2);
+                return;
+        }
         textSize(32);
         if (turn % 2 == 1) {
             stroke(player1.getPlayerColor(),191);
@@ -127,8 +136,14 @@ class Game {
         return turn;
     }
 
-    public int finalwin(){
-        if(turn==31&&!(player1.playerLost()||player2.playerLost())){
+    public int checkWin(){
+        if (player1.playerLost()) {
+            return player2.getFaction();
+        }
+        if (player2.playerLost()) {
+            return player1.getFaction();
+        }
+        if(turn>30){
             if(player1.playerStrength()>player2.playerStrength()){
                 return player1.getFaction();
             }
