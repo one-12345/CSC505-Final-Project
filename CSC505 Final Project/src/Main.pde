@@ -1,5 +1,5 @@
 import java.util.*;
-//import processing.sound.*;
+
 
 final int UI_SIZE = 50;
 PVector mousePosition;
@@ -12,7 +12,7 @@ Menu menu;
 int turn = 1;
 Player player1 = new Player(color(0,40,10),1);
 Player player2 = new Player(color(0,10,40),2);
-//Sound s;
+
 
 void setup() {
   size(800,600);
@@ -22,11 +22,6 @@ void setup() {
   map = new Map(8);
   player1.setFaction(0);
   player2.setFaction(0);
-  //SinOsc sin = new SinOsc(this);
-  //sin.play(200, 0.2);
-  //sin = new SinOsc(this);
-  //sin.play(205, 0.2);
-  //s = new Sound(this);
 }
 
 void draw() {

@@ -211,4 +211,23 @@ class Player {
         return false;
     }
 
+    public int playerStrength(){
+        double strength=0;
+        for (Unit u : units) {
+            if(u.isDeployed()){
+                strength+=(u.drm()+3.5)*u.cv()*(u.mob()+u.range());
+            }
+        }
+        if(!this.hasHQ()){
+            strength=strength/2;
+        }
+        return (int) strength;
+    } 
+
+    public boolean playerLost(){
+        if(this.playerStrength()==0){
+            return true;
+        }
+        return false;
+    }
 }
